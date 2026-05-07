@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#185FA5" />
+<meta name="description" content="TOEIC Speaking learning app for Korean beginners" />
+<title>Jake's TOEIC Speaking Trainer</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📚%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-icon">📚</span>
+      <div>
+        <h1>TOEIC Speaking Trainer</h1>
+        <p class="brand-sub">제이크의 영어 학습 앱</p>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="stat-pill" title="Daily streak">
+        <span class="stat-icon">🔥</span>
+        <span id="streak-num">0</span>
+      </div>
+      <div class="stat-pill" title="Cards mastered">
+        <span class="stat-icon">⭐</span>
+        <span id="mastered-num">0</span>
+      </div>
+    </div>
+  </div>
+  <div class="goal-bar">
+    <div class="goal-bar-inner">
+      <span class="goal-label">목표 (Goal): TOEIC Speaking 140</span>
+      <div class="goal-progress">
+        <div class="goal-fill" id="goal-fill"></div>
+      </div>
+      <span class="goal-pct" id="goal-pct">0%</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" data-tab="home" role="tab" aria-selected="true">
+    <span class="tab-icon">🏠</span>
+    <span class="tab-label">Home</span>
+  </button>
+  <button class="tab-btn" data-tab="grammar" role="tab" aria-selected="false">
+    <span class="tab-icon">📖</span>
+    <span class="tab-label">Grammar</span>
+  </button>
+  <button class="tab-btn" data-tab="learn" role="tab" aria-selected="false">
+    <span class="tab-icon">🃏</span>
+    <span class="tab-label">Learn</span>
+  </button>
+  <button class="tab-btn" data-tab="quiz" role="tab" aria-selected="false">
+    <span class="tab-icon">🎯</span>
+    <span class="tab-label">Quiz</span>
+  </button>
+  <button class="tab-btn" data-tab="build" role="tab" aria-selected="false">
+    <span class="tab-icon">🧩</span>
+    <span class="tab-label">Build</span>
+  </button>
+  <button class="tab-btn" data-tab="speak" role="tab" aria-selected="false">
+    <span class="tab-icon">🎤</span>
+    <span class="tab-label">Speak</span>
+  </button>
+</nav>
+
+<main class="app-main">
+
+  <!-- ============== HOME TAB ============== -->
+  <section class="tab-panel active" id="tab-home" role="tabpanel">
+    <div class="welcome-card">
+      <h2>안녕하세요! 👋</h2>
+      <p class="welcome-text">
+        Welcome back. Let's get closer to <strong>TOEIC Speaking 140</strong> today.
+        매일 조금씩 공부하는 것이 가장 효과적입니다.
+      </p>
+    </div>
+
+    <div class="today-section">
+      <h3 class="section-title">오늘의 학습 (Today's study)</h3>
+      <div id="due-summary" class="due-summary"></div>
+      <button class="cta-btn" id="start-study">
+        <span>📚 오늘 공부 시작하기</span>
+        <span class="cta-sub">Start today's session</span>
+      </button>
+    </div>
+
+    <div class="method-section">
+      <h3 class="section-title">학습 방법 (How this works)</h3>
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-icon">🔁</div>
+          <h4>간격 반복 학습</h4>
+          <p>잘 모르는 단어는 자주, 잘 아는 단어는 가끔 보여줍니다. (Spaced repetition — proven by science)</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">🧠</div>
+          <h4>적극적 회상</h4>
+          <p>읽기만 하지 않고, 직접 답을 떠올려야 기억에 남습니다. (Active recall)</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">🗣️</div>
+          <h4>전체 표현 학습</h4>
+          <p>단어 하나씩이 아닌, 전체 문장 패턴을 통째로 외웁니다. (Chunking)</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">📅</div>
+          <h4>매일 조금씩</h4>
+          <p>하루 10-15분이 한 번에 2시간보다 효과적입니다. (Daily habit)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <h3 class="section-title">학습 진도 (Progress by verb)</h3>
+      <div id="verb-progress"></div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-header">💡 오늘의 팁 (Tip of the day)</div>
+      <p id="daily-tip"></p>
+    </div>
+  </section>
+
+  <!-- ============== GRAMMAR TAB ============== -->
+  <section class="tab-panel" id="tab-grammar" role="tabpanel">
+    <div class="lesson-tabs">
+      <button class="lesson-tab active" data-lesson="0">1. 어순</button>
+      <button class="lesson-tab" data-lesson="1">2. 문장 구조</button>
+      <button class="lesson-tab" data-lesson="2">3. 관사</button>
+      <button class="lesson-tab" data-lesson="3">4. 시제</button>
+      <button class="lesson-tab" data-lesson="4">5. 전치사</button>
+      <button class="lesson-tab" data-lesson="5">6. be동사</button>
+    </div>
+    <div id="lesson-content" class="lesson-content"></div>
+  </section>
+
+  <!-- ============== LEARN TAB (Flashcards with SRS) ============== -->
+  <section class="tab-panel" id="tab-learn" role="tabpanel">
+    <div class="filter-row">
+      <button class="filter-btn active" data-cat="all">전체</button>
+      <button class="filter-btn" data-cat="take">take</button>
+      <button class="filter-btn" data-cat="get">get</button>
+      <button class="filter-btn" data-cat="do">do</button>
+      <button class="filter-btn" data-cat="go">go</button>
+      <button class="filter-btn" data-cat="make">make</button>
+      <button class="filter-btn" data-cat="have">have</button>
+    </div>
+
+    <div class="filter-row" style="margin-top: 8px;">
+      <button class="srs-mode-btn active" data-srs="due">⏰ 복습할 카드만</button>
+      <button class="srs-mode-btn" data-srs="all">📚 전체 카드</button>
+      <button class="srs-mode-btn" data-srs="new">✨ 새 카드만</button>
+    </div>
+
+    <div class="card-progress">
+      <div class="card-progress-bar"><div id="learn-progress-fill"></div></div>
+      <div class="card-progress-text"><span id="learn-counter">0 / 0</span></div>
+    </div>
+
+    <div id="learn-area"></div>
+  </section>
+
+  <!-- ============== QUIZ TAB ============== -->
+  <section class="tab-panel" id="tab-quiz" role="tabpanel">
+    <div class="filter-row">
+      <button class="quiz-cat active" data-cat="all">전체</button>
+      <button class="quiz-cat" data-cat="take">take</button>
+      <button class="quiz-cat" data-cat="get">get</button>
+      <button class="quiz-cat" data-cat="do">do</button>
+      <button class="quiz-cat" data-cat="go">go</button>
+      <button class="quiz-cat" data-cat="make">make</button>
+      <button class="quiz-cat" data-cat="have">have</button>
+    </div>
+
+    <div class="filter-row" style="margin-top: 8px;">
+      <button class="quiz-dir active" data-dir="ko-en">🇰🇷 → 🇬🇧 (한→영)</button>
+      <button class="quiz-dir" data-dir="en-ko">🇬🇧 → 🇰🇷 (영→한)</button>
+    </div>
+
+    <div class="quiz-stats">
+      <div class="quiz-stat"><span class="quiz-stat-label">정답</span><span id="quiz-correct" class="quiz-stat-val correct">0</span></div>
+      <div class="quiz-stat"><span class="quiz-stat-label">오답</span><span id="quiz-wrong" class="quiz-stat-val wrong">0</span></div>
+      <div class="quiz-stat"><span class="quiz-stat-label">정확도</span><span id="quiz-acc" class="quiz-stat-val">—</span></div>
+    </div>
+
+    <div id="quiz-area"></div>
+  </section>
+
+  <!-- ============== BUILD TAB (Sentence builder) ============== -->
+  <section class="tab-panel" id="tab-build" role="tabpanel">
+    <div class="info-banner">
+      <span class="info-icon">🧩</span>
+      <div>
+        <strong>문장 만들기 연습</strong>
+        <p>한국어를 보고, 단어를 올바른 영어 순서로 클릭하세요.</p>
+      </div>
+    </div>
+
+    <div class="build-stats">
+      <span>문제 <span id="build-num">1</span> / <span id="build-total">0</span></span>
+      <span>정답: <strong id="build-score">0</strong></span>
+    </div>
+
+    <div id="build-area"></div>
+
+    <div class="build-controls">
+      <button class="ctrl-btn" id="build-clear">↺ 다시</button>
+      <button class="ctrl-btn" id="build-hint">💡 힌트</button>
+      <button class="ctrl-btn primary" id="build-next">다음 →</button>
+    </div>
+  </section>
+
+  <!-- ============== SPEAK TAB ============== -->
+  <section class="tab-panel" id="tab-speak" role="tabpanel">
+    <div class="info-banner">
+      <span class="info-icon">🎤</span>
+      <div>
+        <strong>말하기 연습 (Speaking practice)</strong>
+        <p>문장을 듣고, 큰 소리로 따라 말하세요. 토익 스피킹은 발음과 자연스러움이 중요합니다.</p>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <button class="speak-cat active" data-cat="all">전체</button>
+      <button class="speak-cat" data-cat="take">take</button>
+      <button class="speak-cat" data-cat="get">get</button>
+      <button class="speak-cat" data-cat="do">do</button>
+      <button class="speak-cat" data-cat="go">go</button>
+      <button class="speak-cat" data-cat="make">make</button>
+      <button class="speak-cat" data-cat="have">have</button>
+    </div>
+
+    <div class="speed-control">
+      <label for="speak-speed">속도 (Speed): <span id="speed-val">0.85</span>x</label>
+      <input type="range" id="speak-speed" min="0.5" max="1.2" step="0.05" value="0.85" />
+    </div>
+
+    <div id="speak-area"></div>
+
+    <div class="speak-controls">
+      <button class="ctrl-btn" id="speak-prev">←</button>
+      <button class="ctrl-btn primary" id="speak-play">🔊 듣기</button>
+      <button class="ctrl-btn" id="speak-next">→</button>
+    </div>
+
+    <div class="speak-tip">
+      <strong>💡 따라 말하기 (Shadowing) 팁:</strong>
+      <ol>
+        <li>버튼을 눌러 문장을 들으세요</li>
+        <li>다시 한 번 듣고 같이 따라 말하세요</li>
+        <li>원어민과 동시에 말할 수 있을 때까지 반복하세요</li>
+      </ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <button class="footer-btn" id="reset-btn">🔄 진도 초기화 (Reset progress)</button>
+  <p class="footer-text">Made with ❤️ for learning English. 화이팅!</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="data.js"></script>
+<script src="srs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
