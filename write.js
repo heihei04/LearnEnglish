@@ -4,8 +4,14 @@
 
 const API_KEY_STORAGE = 'jake-toeic-gemini-key';
 const HISTORY_STORAGE = 'jake-toeic-write-history';
-const GEMINI_MODEL = 'gemini-2.0-flash';
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+// Models to try in order. Free-tier availability changes — fall back if one fails.
+const GEMINI_MODELS = [
+  'gemini-2.5-flash-lite',  // Currently most reliable on free tier
+  'gemini-2.5-flash',       // Backup
+  'gemini-2.0-flash-lite',  // Older backup
+  'gemini-2.0-flash'        // Last resort
+];
+const GEMINI_BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 // ============================================================
 // Writing prompts — categorized by difficulty
@@ -223,22 +229,51 @@ Check this sentence and respond in JSON.`;
     }
   };
 
-  const response = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
+  // Try each model in order. If one returns 429 (quota), try the next.
+  // Remember the working model so we use it first next time.
+  const lastWorking = localStorage.getItem('jake-toeic-working-model');
+  const tryOrder = lastWorking
+    ? [lastWorking, ...GEMINI_MODELS.filter(m => m !== lastWorking)]
+    : GEMINI_MODELS;
 
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`API error ${response.status}: ${errText}`);
+  let lastError = null;
+  for (const model of tryOrder) {
+    try {
+      const url = `${GEMINI_BASE_URL}/${model}:generateContent?key=${apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!text) throw new Error('Empty response from AI');
+        // Cache the working model for next time
+        localStorage.setItem('jake-toeic-working-model', model);
+        return JSON.parse(text);
+      }
+
+      const errText = await response.text();
+      lastError = new Error(`API error ${response.status} (${model}): ${errText}`);
+
+      // 429 = quota exceeded — try next model
+      // 404 = model not found/available — try next model
+      // Anything else (auth, network) — stop and report
+      if (response.status !== 429 && response.status !== 404) {
+        throw lastError;
+      }
+    } catch (err) {
+      lastError = err;
+      // Network errors, JSON parse errors etc — try next
+      if (err.message?.includes('API error') && !err.message.includes('429') && !err.message.includes('404')) {
+        throw err;
+      }
+    }
   }
 
-  const data = await response.json();
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error('Empty response from AI');
-
-  return JSON.parse(text);
+  throw lastError || new Error('All models failed');
 }
 
 // ============================================================
@@ -289,8 +324,8 @@ async function handleCheck() {
 
     if (msg.includes('401') || msg.includes('403') || msg.includes('API_KEY')) {
       helpText = 'API 키가 잘못되었거나 만료되었을 수 있습니다. "API 키 변경" 버튼을 눌러 다시 입력해보세요.';
-    } else if (msg.includes('429')) {
-      helpText = '오늘의 무료 사용량이 초과되었습니다. 내일 다시 시도해주세요.';
+    } else if (msg.includes('429') || msg.includes('limit: 0') || msg.includes('RESOURCE_EXHAUSTED')) {
+      helpText = '⚠️ Google API 무료 사용량 문제입니다.\n\n해결 방법:\n1. 잠시 (5분) 기다린 후 다시 시도해보세요.\n2. 그래도 안되면, https://aistudio.google.com/apikey 에서 새 API 키를 만들어보세요. (Try creating a new API key)\n3. 새 키를 만들 때 "Create API key in new project" 옵션을 선택하세요.';
     } else if (msg.includes('Failed to fetch') || msg.includes('NetworkError')) {
       helpText = '인터넷 연결을 확인해주세요.';
     } else {
@@ -300,7 +335,7 @@ async function handleCheck() {
     fbArea.innerHTML = `
       <div class="ai-error">
         <h4>⚠️ 오류가 발생했습니다</h4>
-        <p>${escapeHtml(helpText)}</p>
+        <p style="white-space: pre-wrap;">${escapeHtml(helpText)}</p>
         <details style="margin-top:8px;">
           <summary style="cursor:pointer; font-size:12px; color:var(--text-tertiary)">기술 정보</summary>
           <code style="font-size:11px; color:var(--text-tertiary)">${escapeHtml(msg)}</code>
