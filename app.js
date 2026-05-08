@@ -79,6 +79,7 @@ function switchTab(tabName) {
   else if (tabName === 'learn') initLearn();
   else if (tabName === 'quiz') initQuiz();
   else if (tabName === 'build') initBuild();
+  else if (tabName === 'write') initWrite();
   else if (tabName === 'speak') initSpeak();
 
   // Scroll to top on tab change
