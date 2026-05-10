@@ -185,7 +185,15 @@ Their grammar lessons covered:
 3. 관사 (articles): a/an/the are required before most nouns
 4. 시제 (tenses): present (I take), past (I took), present continuous (I am taking)
 5. 전치사 (prepositions): in/on/at, to/from, by/with
-6. be동사: am/is/are usage
+6. be동사: am/is/are usage (identity, state, location, continuous)
+7. 대명사 (pronouns): I/me/my/mine, he/him/his, she/her/hers
+8. 단수와 복수 (singular/plural): -s for plurals, uncountable nouns like water/money
+9. 미래 (future tense with will): will + base verb for future
+10. 시간 표현 (time words): yesterday, tomorrow, next week, ago, in
+11. 질문 만들기 (asking questions): Do/Does/Did + subject + verb, Wh- questions
+12. 부정문 (negatives): don't/doesn't/didn't, isn't/aren't, won't
+13. 단순문과 복합문 (simple & compound sentences): joining with and/but/so/because
+14. VCOP (vocabulary, connectives, openers, punctuation)
 
 Respond ONLY with valid JSON (no markdown, no code fences) in this exact structure:
 {
@@ -196,7 +204,7 @@ Respond ONLY with valid JSON (no markdown, no code fences) in this exact structu
     {
       "issue": "한국어로 어떤 문제인지 설명 (e.g. '동사가 빠졌습니다')",
       "rule": "관련 문법 규칙 in Korean (e.g. '영어 문장에는 항상 동사가 필요합니다')",
-      "lesson": "어순" or "문장 구조" or "관사" or "시제" or "전치사" or "be동사",
+      "lesson": "어순" or "문장 구조" or "관사" or "시제" or "전치사" or "be동사" or "대명사" or "단수와 복수" or "미래" or "시간 표현" or "질문" or "부정문" or "복합문" or "VCOP",
       "example": "a correct example sentence in English with Korean translation"
     }
   ],
@@ -400,32 +408,11 @@ function renderFeedback(result, originalSentence) {
   fbArea.querySelectorAll('.lesson-link').forEach(btn => {
     btn.addEventListener('click', () => {
       const lessonName = btn.dataset.lesson;
-      jumpToLesson(lessonName);
+      if (typeof jumpToLessonByName === 'function') {
+        jumpToLessonByName(lessonName);
+      }
     });
   });
-}
-
-// ============================================================
-// Jump to a specific grammar lesson
-// ============================================================
-function jumpToLesson(lessonName) {
-  const lessonMap = {
-    '어순': 0,
-    '문장 구조': 1,
-    '관사': 2,
-    '시제': 3,
-    '전치사': 4,
-    'be동사': 5
-  };
-  const idx = lessonMap[lessonName];
-  if (idx === undefined) return;
-
-  switchTab('grammar');
-  // Trigger the lesson tab
-  setTimeout(() => {
-    const btn = document.querySelector(`.lesson-tab[data-lesson="${idx}"]`);
-    if (btn) btn.click();
-  }, 100);
 }
 
 // ============================================================
