@@ -135,15 +135,17 @@
 
   <!-- ============== GRAMMAR TAB ============== -->
   <section class="tab-panel" id="tab-grammar" role="tabpanel">
-    <div class="lesson-tabs">
-      <button class="lesson-tab active" data-lesson="0">1. 어순</button>
-      <button class="lesson-tab" data-lesson="1">2. 문장 구조</button>
-      <button class="lesson-tab" data-lesson="2">3. 관사</button>
-      <button class="lesson-tab" data-lesson="3">4. 시제</button>
-      <button class="lesson-tab" data-lesson="4">5. 전치사</button>
-      <button class="lesson-tab" data-lesson="5">6. be동사</button>
+    <div id="grammar-list-view">
+      <div id="lesson-groups"></div>
     </div>
-    <div id="lesson-content" class="lesson-content"></div>
+    <div id="grammar-lesson-view" style="display:none">
+      <button class="back-btn" id="lesson-back-btn">← 목록으로 (Back to list)</button>
+      <div id="lesson-content" class="lesson-content"></div>
+      <div class="lesson-nav">
+        <button class="ctrl-btn" id="lesson-prev-btn">← 이전 레슨</button>
+        <button class="ctrl-btn" id="lesson-next-btn">다음 레슨 →</button>
+      </div>
+    </div>
   </section>
 
   <!-- ============== LEARN TAB (Flashcards with SRS) ============== -->
