@@ -361,10 +361,10 @@ const LESSONS = [
     <p class="ko-line">그녀는 직장에서 잠시 쉬고 있습니다.</p>
   </div>`,
 
-  // Lesson 6: Be verbs
+  // Lesson 6: Be verbs (DEEPER VERSION)
   `<div class="lesson-block info">
     <div class="lesson-block-header">🔄 be동사 (am / is / are) 란?</div>
-    <p>한국어의 "~이다", "~있다" 같은 역할을 합니다. 영어에서 매우 자주 사용됩니다.</p>
+    <p>한국어의 "~이다", "~있다" 같은 역할을 합니다. 영어에서 매우 자주 사용되는 가장 중요한 동사입니다.</p>
   </div>
 
   <div class="part-card">
@@ -372,41 +372,773 @@ const LESSONS = [
     <p class="en-line">I → <strong>am</strong></p>
     <p class="en-line">He / She / It → <strong>is</strong></p>
     <p class="en-line">We / You / They → <strong>are</strong></p>
+    <hr/>
+    <p class="part-desc">과거형:</p>
+    <p class="en-line">I / He / She / It → <strong>was</strong></p>
+    <p class="en-line">We / You / They → <strong>were</strong></p>
   </div>
 
+  <p class="sub-label">be동사를 언제 쓰나요? 5가지 경우:</p>
+
   <div class="part-card">
-    <div class="part-tag wb-verb">사용법 1: ~이다 (정체)</div>
+    <div class="part-tag wb-subj">1. 정체 (~이다)</div>
     <p class="en-line">I <span class="hl-verb">am</span> a student.</p>
     <p class="ko-line">저는 학생입니다.</p>
     <hr/>
-    <p class="en-line">She <span class="hl-verb">is</span> my friend.</p>
-    <p class="ko-line">그녀는 제 친구입니다.</p>
+    <p class="en-line">She <span class="hl-verb">is</span> a doctor.</p>
+    <p class="ko-line">그녀는 의사입니다.</p>
   </div>
 
   <div class="part-card">
-    <div class="part-tag wb-obj">사용법 2: ~한 상태 (형용사 앞)</div>
-    <p class="en-line">I <span class="hl-obj">am</span> happy.</p>
+    <div class="part-tag wb-verb">2. 상태 / 감정 (형용사 앞)</div>
+    <p class="en-line">I <span class="hl-verb">am</span> happy.</p>
     <p class="ko-line">저는 행복합니다.</p>
     <hr/>
-    <p class="en-line">The movie <span class="hl-obj">is</span> good.</p>
-    <p class="ko-line">그 영화는 좋습니다.</p>
+    <p class="en-line">The movie <span class="hl-verb">was</span> good.</p>
+    <p class="ko-line">그 영화는 좋았습니다.</p>
+    <hr/>
+    <p class="part-desc"><strong>중요:</strong> "I happy" 는 틀림! 반드시 <strong>am</strong> 이 필요합니다.</p>
   </div>
 
   <div class="part-card">
-    <div class="part-tag wb-subj">사용법 3: 진행형 (~하고 있다)</div>
-    <p class="en-line">She <span class="hl-subj">is</span> <strong>taking</strong> notes.</p>
-    <p class="ko-line">그녀는 필기를 하고 있습니다.</p>
+    <div class="part-tag wb-obj">3. 위치 (~에 있다)</div>
+    <p class="en-line">I <span class="hl-verb">am</span> at home.</p>
+    <p class="ko-line">저는 집에 있습니다.</p>
     <hr/>
-    <p class="en-line">They <span class="hl-subj">are</span> <strong>having</strong> a meeting.</p>
-    <p class="ko-line">그들은 회의를 하고 있습니다.</p>
+    <p class="en-line">They <span class="hl-verb">are</span> in the office.</p>
+    <p class="ko-line">그들은 사무실에 있습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">4. 진행형 (~하고 있다)</div>
+    <p class="en-line">She <span class="hl-verb">is</span> <strong>eating</strong> lunch.</p>
+    <p class="ko-line">그녀는 점심을 먹고 있습니다.</p>
+    <hr/>
+    <p class="en-line">They <span class="hl-verb">are</span> <strong>working</strong>.</p>
+    <p class="ko-line">그들은 일하고 있습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">5. 수동태 (~되어진다)</div>
+    <p class="en-line">The book <span class="hl-verb">was</span> <strong>written</strong> by him.</p>
+    <p class="ko-line">그 책은 그에 의해 쓰여졌습니다.</p>
+  </div>
+
+  <p class="sub-label">부정문과 의문문:</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">부정문 (~아니다): be동사 + not</div>
+    <p class="en-line">I <span class="hl-obj">am not</span> tired.</p>
+    <p class="ko-line">저는 피곤하지 않습니다.</p>
+    <hr/>
+    <p class="en-line">She <span class="hl-obj">is not</span> (= <strong>isn't</strong>) at home.</p>
+    <p class="ko-line">그녀는 집에 없습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">의문문 (~인가요?): be동사를 앞으로</div>
+    <p class="en-line"><span class="hl-subj">Are</span> you a student?</p>
+    <p class="ko-line">당신은 학생인가요?</p>
+    <hr/>
+    <p class="en-line"><span class="hl-subj">Is</span> he happy?</p>
+    <p class="ko-line">그는 행복한가요?</p>
   </div>
 
   <div class="lesson-block warn">
     <div class="lesson-block-header">⚠️ 자주 하는 실수</div>
     <p>❌ I <s>have</s> happy. → ✅ I <strong>am</strong> happy.</p>
     <p>❌ She <s>taking</s> notes. → ✅ She <strong>is</strong> taking notes.</p>
-    <p>형용사 앞과 진행형에서는 반드시 be동사를 써야 합니다.</p>
+    <p>❌ He <s>at</s> home. → ✅ He <strong>is</strong> at home.</p>
+    <p>형용사, 진행형, 위치 표현에는 반드시 be동사가 필요합니다.</p>
+  </div>`,
+
+  // ============================================================
+  // NEW LESSONS START HERE
+  // ============================================================
+
+  // Lesson 7: Pronouns (대명사)
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">👤 대명사 (Pronouns) 란?</div>
+    <p>"나", "너", "그" 같은 단어들. 영어 대명사는 <strong>역할에 따라 모양이 바뀝니다</strong>. 한국어와 다른 가장 큰 부분입니다.</p>
+  </div>
+
+  <p class="sub-label">대명사 표 (외워두면 매우 유용합니다):</p>
+
+  <div class="example-box">
+    <table class="grammar-table">
+      <thead>
+        <tr><th>한국어</th><th>주어</th><th>목적어</th><th>소유격</th><th>소유대명사</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>나</td><td><strong>I</strong></td><td><strong>me</strong></td><td><strong>my</strong></td><td><strong>mine</strong></td></tr>
+        <tr><td>너</td><td><strong>you</strong></td><td><strong>you</strong></td><td><strong>your</strong></td><td><strong>yours</strong></td></tr>
+        <tr><td>그</td><td><strong>he</strong></td><td><strong>him</strong></td><td><strong>his</strong></td><td><strong>his</strong></td></tr>
+        <tr><td>그녀</td><td><strong>she</strong></td><td><strong>her</strong></td><td><strong>her</strong></td><td><strong>hers</strong></td></tr>
+        <tr><td>그것</td><td><strong>it</strong></td><td><strong>it</strong></td><td><strong>its</strong></td><td>—</td></tr>
+        <tr><td>우리</td><td><strong>we</strong></td><td><strong>us</strong></td><td><strong>our</strong></td><td><strong>ours</strong></td></tr>
+        <tr><td>그들</td><td><strong>they</strong></td><td><strong>them</strong></td><td><strong>their</strong></td><td><strong>theirs</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">주어 (Subject): 문장의 주인</div>
+    <p class="en-line"><span class="hl-subj">I</span> like coffee.</p>
+    <p class="ko-line">저는 커피를 좋아합니다.</p>
+    <hr/>
+    <p class="en-line"><span class="hl-subj">He</span> studies English.</p>
+    <p class="ko-line">그는 영어를 공부합니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">목적어 (Object): 행동을 받는 대상</div>
+    <p class="en-line">She loves <span class="hl-verb">me</span>.</p>
+    <p class="ko-line">그녀는 저를 사랑합니다.</p>
+    <hr/>
+    <p class="en-line">I called <span class="hl-verb">him</span> yesterday.</p>
+    <p class="ko-line">저는 어제 그에게 전화했습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">소유격 (Possessive): 명사 앞에서 "~의"</div>
+    <p class="en-line">This is <span class="hl-obj">my</span> book.</p>
+    <p class="ko-line">이것은 제 책입니다.</p>
+    <hr/>
+    <p class="en-line"><span class="hl-obj">Her</span> car is red.</p>
+    <p class="ko-line">그녀의 차는 빨갛습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">소유대명사 (Possessive pronoun): 명사 없이 "~의 것"</div>
+    <p class="en-line">This book is <span class="hl-subj">mine</span>.</p>
+    <p class="ko-line">이 책은 제 것입니다.</p>
+    <hr/>
+    <p class="en-line">The red car is <span class="hl-subj">hers</span>.</p>
+    <p class="ko-line">그 빨간 차는 그녀의 것입니다.</p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ 자주 하는 실수</div>
+    <p>❌ <s>Me</s> went to school. → ✅ <strong>I</strong> went to school. (주어는 "I")</p>
+    <p>❌ She likes <s>I</s>. → ✅ She likes <strong>me</strong>. (목적어는 "me")</p>
+    <p>❌ <s>Him</s> is my friend. → ✅ <strong>He</strong> is my friend. (주어는 "he")</p>
+    <p>❌ This is <s>I</s> book. → ✅ This is <strong>my</strong> book. (명사 앞은 "my")</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">💡 기억하는 방법</div>
+    <p><strong>주어 자리</strong> (문장 맨 앞, 동사 앞): I, He, She, We, They</p>
+    <p><strong>동사 뒤</strong>: me, him, her, us, them</p>
+    <p><strong>명사 앞</strong>: my, his, her, our, their</p>
+  </div>`,
+
+  // Lesson 8: Plurals & countable/uncountable
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">🔢 단수와 복수 (Singular and Plural)</div>
+    <p>한국어는 "사과 한 개"와 "사과 다섯 개"의 모양이 같습니다. 영어는 다릅니다 — <strong>2개 이상이면 보통 -s를 붙입니다</strong>.</p>
+  </div>
+
+  <div class="example-box">
+    <p class="en-line">one <strong>apple</strong> → two <strong>apples</strong></p>
+    <p class="ko-line">사과 1개 → 사과 2개</p>
+    <hr/>
+    <p class="en-line">a <strong>book</strong> → many <strong>books</strong></p>
+    <p class="ko-line">책 한 권 → 책 여러 권</p>
+    <hr/>
+    <p class="en-line">my <strong>friend</strong> → my <strong>friends</strong></p>
+    <p class="ko-line">제 친구 → 제 친구들</p>
+  </div>
+
+  <p class="sub-label">복수형 만드는 규칙:</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">대부분: -s 추가</div>
+    <p class="en-line">cat → cat<strong>s</strong>, dog → dog<strong>s</strong>, car → car<strong>s</strong></p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">-s, -x, -ch, -sh 로 끝나면: -es</div>
+    <p class="en-line">bus → bus<strong>es</strong>, box → box<strong>es</strong>, watch → watch<strong>es</strong></p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">자음 + y 로 끝나면: y → ies</div>
+    <p class="en-line">city → cit<strong>ies</strong>, baby → bab<strong>ies</strong>, country → countr<strong>ies</strong></p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">불규칙 복수형 (그냥 외우세요)</div>
+    <p class="en-line">man → <strong>men</strong>, woman → <strong>women</strong>, child → <strong>children</strong></p>
+    <p class="en-line">foot → <strong>feet</strong>, tooth → <strong>teeth</strong>, person → <strong>people</strong></p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ 셀 수 없는 명사 (Uncountable Nouns)</div>
+    <p>몇몇 단어는 <strong>복수형이 없습니다</strong>. 항상 단수처럼 사용합니다:</p>
+    <p>💧 water (물), ☕ coffee (커피), 💰 money (돈), 🥛 milk (우유), 🍞 bread (빵), ⏰ time (시간), 🎵 music (음악), ℹ️ information (정보), 📚 advice (조언), 🏠 furniture (가구)</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">셀 수 없는 명사 사용법</div>
+    <p class="en-line">❌ I drink <s>waters</s>.  ✅ I drink <strong>water</strong>.</p>
+    <p class="en-line">❌ I have many <s>moneys</s>.  ✅ I have <strong>a lot of money</strong>.</p>
+    <p class="en-line">❌ I need an <s>advice</s>.  ✅ I need <strong>advice</strong> / <strong>some advice</strong>.</p>
+    <hr/>
+    <p class="part-desc"><strong>양을 표현하려면:</strong></p>
+    <p class="en-line">a <strong>cup of</strong> coffee, a <strong>glass of</strong> water, a <strong>piece of</strong> advice</p>
+    <p class="ko-line">커피 한 잔, 물 한 잔, 조언 한 마디</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">💡 many vs much</div>
+    <p><strong>many</strong> + 셀 수 있는 복수: many books, many people, many friends</p>
+    <p><strong>much</strong> + 셀 수 없는 명사: much water, much time, much money</p>
+    <p><strong>a lot of</strong> 는 둘 다 사용 가능 (가장 안전한 선택)</p>
+  </div>`,
+
+  // Lesson 9: Will + Future
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">🔮 미래 시제 (Future Tense) — will</div>
+    <p>앞으로 일어날 일을 말할 때 사용합니다. 가장 쉬운 미래 표현은 <strong>will + 동사원형</strong> 입니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">기본 형태: 주어 + will + 동사</div>
+    <p class="en-line">I <span class="hl-subj">will</span> <strong>go</strong> to Korea.</p>
+    <p class="ko-line">저는 한국에 갈 것입니다.</p>
+    <hr/>
+    <p class="en-line">She <span class="hl-subj">will</span> <strong>call</strong> you tomorrow.</p>
+    <p class="ko-line">그녀는 내일 당신에게 전화할 것입니다.</p>
+    <hr/>
+    <p class="part-desc"><strong>중요:</strong> will 다음에는 항상 <strong>동사원형</strong> (변형되지 않은 형태) 만 옵니다.</p>
+    <p class="en-line">❌ She will <s>goes</s>. → ✅ She will <strong>go</strong>.</p>
+  </div>
+
+  <p class="sub-label">언제 will을 사용하나요?</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">1. 미래의 예측 (~할 것이다)</div>
+    <p class="en-line">It <strong>will rain</strong> tomorrow.</p>
+    <p class="ko-line">내일 비가 올 것입니다.</p>
+    <hr/>
+    <p class="en-line">He <strong>will be</strong> a great teacher.</p>
+    <p class="ko-line">그는 훌륭한 선생님이 될 것입니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">2. 즉석 결정 (지금 막 결정한 일)</div>
+    <p class="en-line">I'm thirsty. I <strong>will drink</strong> some water.</p>
+    <p class="ko-line">목마르네요. 물을 마실게요.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">3. 약속 / 의지</div>
+    <p class="en-line">I <strong>will help</strong> you.</p>
+    <p class="ko-line">제가 도와드릴게요.</p>
+    <hr/>
+    <p class="en-line">I <strong>will study</strong> hard.</p>
+    <p class="ko-line">저는 열심히 공부할 거예요.</p>
+  </div>
+
+  <p class="sub-label">부정문과 의문문:</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">부정문: will not (= won't)</div>
+    <p class="en-line">I <span class="hl-verb">will not</span> (= <strong>won't</strong>) be late.</p>
+    <p class="ko-line">저는 늦지 않을 것입니다.</p>
+    <hr/>
+    <p class="en-line">She <strong>won't</strong> come tomorrow.</p>
+    <p class="ko-line">그녀는 내일 오지 않을 것입니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">의문문: Will + 주어 + 동사?</div>
+    <p class="en-line"><span class="hl-obj">Will</span> you <strong>come</strong> with me?</p>
+    <p class="ko-line">저와 함께 가시겠어요?</p>
+    <hr/>
+    <p class="en-line"><span class="hl-obj">Will</span> it <strong>rain</strong> tomorrow?</p>
+    <p class="ko-line">내일 비가 올까요?</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">💡 다른 미래 표현: be going to</div>
+    <p><strong>be going to + 동사</strong> 도 미래를 표현합니다. 의미가 약간 다릅니다:</p>
+    <p>• <strong>will</strong>: 즉석 결정, 예측, 약속</p>
+    <p>• <strong>be going to</strong>: 이미 계획한 일</p>
+    <p class="en-line">I <strong>am going to</strong> visit my parents next week. (이미 계획됨)</p>
+    <p class="ko-line">저는 다음 주에 부모님을 방문할 예정입니다.</p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ 자주 하는 실수</div>
+    <p>❌ I will <s>going</s> to school. → ✅ I will <strong>go</strong> to school.</p>
+    <p>❌ She <s>will is</s> happy. → ✅ She <strong>will be</strong> happy.</p>
+    <p>will 뒤에는 항상 동사원형!</p>
+  </div>`,
+
+  // Lesson 10: Time words (past, present, future)
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">⏰ 시간 표현 (Time Words)</div>
+    <p>"언제" 일이 일어났는지 알려주는 단어들. 시제와 함께 사용하면 의미가 명확해집니다.</p>
+  </div>
+
+  <p class="sub-label">과거 (Past) — 이미 지난 일</p>
+  <div class="part-card">
+    <div class="part-tag wb-verb">자주 쓰는 과거 시간 표현</div>
+    <p class="en-line"><strong>yesterday</strong> (어제), <strong>last night</strong> (어젯밤)</p>
+    <p class="en-line"><strong>last week</strong> (지난주), <strong>last month</strong> (지난달), <strong>last year</strong> (작년)</p>
+    <p class="en-line"><strong>two days ago</strong> (이틀 전), <strong>a week ago</strong> (일주일 전)</p>
+    <p class="en-line"><strong>this morning</strong> (오늘 아침), <strong>in 2020</strong> (2020년에)</p>
+    <hr/>
+    <p class="en-line">I went to Korea <strong>last year</strong>.</p>
+    <p class="ko-line">저는 작년에 한국에 갔습니다.</p>
+    <hr/>
+    <p class="en-line">She called me <strong>two hours ago</strong>.</p>
+    <p class="ko-line">그녀는 두 시간 전에 저에게 전화했습니다.</p>
+  </div>
+
+  <p class="sub-label">현재 (Present) — 항상, 보통, 매일</p>
+  <div class="part-card">
+    <div class="part-tag wb-subj">자주 쓰는 현재 시간 표현</div>
+    <p class="en-line"><strong>every day</strong> (매일), <strong>every week</strong> (매주), <strong>every morning</strong> (매일 아침)</p>
+    <p class="en-line"><strong>always</strong> (항상), <strong>usually</strong> (보통), <strong>often</strong> (자주), <strong>sometimes</strong> (가끔), <strong>never</strong> (절대로)</p>
+    <p class="en-line"><strong>now</strong> (지금), <strong>today</strong> (오늘)</p>
+    <hr/>
+    <p class="en-line">I <strong>usually</strong> drink coffee in the morning.</p>
+    <p class="ko-line">저는 보통 아침에 커피를 마십니다.</p>
+    <hr/>
+    <p class="en-line">She goes to the gym <strong>every day</strong>.</p>
+    <p class="ko-line">그녀는 매일 헬스장에 갑니다.</p>
+  </div>
+
+  <p class="sub-label">미래 (Future) — 앞으로 일어날 일</p>
+  <div class="part-card">
+    <div class="part-tag wb-obj">자주 쓰는 미래 시간 표현</div>
+    <p class="en-line"><strong>tomorrow</strong> (내일), <strong>tomorrow morning</strong> (내일 아침)</p>
+    <p class="en-line"><strong>next week</strong> (다음 주), <strong>next month</strong> (다음 달), <strong>next year</strong> (내년)</p>
+    <p class="en-line"><strong>in two days</strong> (이틀 후), <strong>in a week</strong> (일주일 후), <strong>in 2030</strong> (2030년에)</p>
+    <p class="en-line"><strong>soon</strong> (곧), <strong>later</strong> (나중에), <strong>tonight</strong> (오늘 밤)</p>
+    <hr/>
+    <p class="en-line">I will travel to Japan <strong>next month</strong>.</p>
+    <p class="ko-line">저는 다음 달에 일본으로 여행 갈 것입니다.</p>
+    <hr/>
+    <p class="en-line">She will graduate <strong>in two years</strong>.</p>
+    <p class="ko-line">그녀는 2년 후에 졸업할 것입니다.</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">💡 시간 표현은 보통 어디에?</div>
+    <p>시간 표현은 보통 <strong>문장의 맨 끝</strong> 에 옵니다:</p>
+    <p class="en-line">I went to school <strong>yesterday</strong>.</p>
+    <p>또는 <strong>맨 앞</strong>에 강조하기 위해:</p>
+    <p class="en-line"><strong>Yesterday</strong>, I went to school.</p>
+    <p class="part-desc">하지만 <strong>always, usually, often, sometimes, never</strong> 같은 빈도부사는 <strong>동사 앞</strong>에 옵니다:</p>
+    <p class="en-line">I <strong>always</strong> drink coffee. (✅ "I drink always coffee" 는 틀림)</p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ ago vs in</div>
+    <p><strong>ago</strong> = 과거 (~전에): two days <strong>ago</strong> (이틀 전)</p>
+    <p><strong>in</strong> = 미래 (~후에): <strong>in</strong> two days (이틀 후)</p>
+    <p>매우 헷갈리지만 정반대 의미입니다!</p>
+  </div>`,
+
+  // Lesson 11: Asking questions
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">❓ 질문 만들기 (Asking Questions)</div>
+    <p>토익 스피킹에서 매우 중요합니다! 영어 질문은 <strong>단어 순서를 바꿔야</strong> 합니다.</p>
+  </div>
+
+  <p class="sub-label">질문 만드는 두 가지 방법:</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">방법 1: be동사 (am/is/are/was/were)</div>
+    <p class="part-desc"><strong>be동사를 맨 앞으로 옮기세요.</strong></p>
+    <p class="en-line">평서문: You <strong>are</strong> a student.</p>
+    <p class="en-line">의문문: <strong>Are</strong> you a student?</p>
+    <p class="ko-line">→ 당신은 학생인가요?</p>
+    <hr/>
+    <p class="en-line">평서문: She <strong>is</strong> happy.</p>
+    <p class="en-line">의문문: <strong>Is</strong> she happy?</p>
+    <hr/>
+    <p class="en-line">평서문: They <strong>were</strong> at home.</p>
+    <p class="en-line">의문문: <strong>Were</strong> they at home?</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">방법 2: 일반 동사 → Do/Does/Did를 사용</div>
+    <p class="part-desc">be동사가 없는 문장에는 <strong>Do, Does, Did</strong> 를 맨 앞에 붙입니다.</p>
+    <p class="en-line">현재: <strong>Do</strong> + 주어 + 동사원형 ?</p>
+    <p class="en-line">현재 (he/she/it): <strong>Does</strong> + 주어 + 동사원형 ?</p>
+    <p class="en-line">과거: <strong>Did</strong> + 주어 + 동사원형 ?</p>
+    <hr/>
+    <p class="en-line">평서문: You <strong>like</strong> coffee.</p>
+    <p class="en-line">의문문: <strong>Do</strong> you like coffee?</p>
+    <p class="ko-line">→ 당신은 커피를 좋아하나요?</p>
+    <hr/>
+    <p class="en-line">평서문: She <strong>plays</strong> tennis.</p>
+    <p class="en-line">의문문: <strong>Does</strong> she play tennis?</p>
+    <p class="ko-line">(주의: "plays" → "play" 로 원형으로!)</p>
+    <hr/>
+    <p class="en-line">평서문: He <strong>went</strong> to school.</p>
+    <p class="en-line">의문문: <strong>Did</strong> he <strong>go</strong> to school?</p>
+    <p class="ko-line">(주의: "went" → "go" 로 원형으로!)</p>
+  </div>
+
+  <p class="sub-label">의문사 (Wh- Questions): 무엇? 누구? 언제?</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">5W1H 의문사</div>
+    <p class="en-line"><strong>What</strong> = 무엇</p>
+    <p class="en-line"><strong>Who</strong> = 누구</p>
+    <p class="en-line"><strong>When</strong> = 언제</p>
+    <p class="en-line"><strong>Where</strong> = 어디</p>
+    <p class="en-line"><strong>Why</strong> = 왜</p>
+    <p class="en-line"><strong>How</strong> = 어떻게</p>
+    <hr/>
+    <p class="part-desc"><strong>구조:</strong> 의문사 + Do/Does/Did/be동사 + 주어 + 동사 ?</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">의문사 예시</div>
+    <p class="en-line"><strong>What</strong> do you do?</p>
+    <p class="ko-line">무슨 일을 하세요?</p>
+    <hr/>
+    <p class="en-line"><strong>Where</strong> are you from?</p>
+    <p class="ko-line">어디에서 오셨나요?</p>
+    <hr/>
+    <p class="en-line"><strong>When</strong> did you arrive?</p>
+    <p class="ko-line">언제 도착하셨나요?</p>
+    <hr/>
+    <p class="en-line"><strong>Why</strong> are you late?</p>
+    <p class="ko-line">왜 늦으셨나요?</p>
+    <hr/>
+    <p class="en-line"><strong>How</strong> do you go to work?</p>
+    <p class="ko-line">어떻게 출근하시나요?</p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ 자주 하는 실수</div>
+    <p>❌ <s>You like coffee?</s> → ✅ <strong>Do</strong> you like coffee?</p>
+    <p>❌ Did she <s>went</s> home? → ✅ Did she <strong>go</strong> home? (Did 뒤에는 동사원형!)</p>
+    <p>❌ <s>What you do?</s> → ✅ <strong>What do</strong> you do?</p>
+    <p>❌ <s>Where you live?</s> → ✅ <strong>Where do</strong> you live?</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">💡 토익 스피킹 팁</div>
+    <p>토익 스피킹 5번 문제는 <strong>질문 만들기</strong> 입니다. 이 레슨이 그 문제에 직접 도움이 됩니다. 매일 5개씩 영어 질문을 만들어 보세요!</p>
+  </div>`,
+
+  // Lesson 12: Negatives
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">🚫 부정문 (Negatives) — "~하지 않다"</div>
+    <p>"먹다" → "먹지 않다", "간다" → "안 간다". 영어에서는 동사에 따라 부정문 만드는 방법이 다릅니다.</p>
+  </div>
+
+  <p class="sub-label">두 가지 방법:</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">방법 1: be동사 + not</div>
+    <p class="en-line">I <strong>am not</strong> a student. (= I'm not)</p>
+    <p class="ko-line">저는 학생이 아닙니다.</p>
+    <hr/>
+    <p class="en-line">She <strong>is not</strong> happy. (= She isn't)</p>
+    <p class="ko-line">그녀는 행복하지 않습니다.</p>
+    <hr/>
+    <p class="en-line">They <strong>are not</strong> at home. (= They aren't)</p>
+    <p class="ko-line">그들은 집에 없습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">방법 2: 일반 동사 → do not / does not / did not</div>
+    <p class="part-desc">be동사가 없으면 <strong>do/does/did + not</strong> 을 동사 앞에 붙입니다.</p>
+    <p class="en-line">현재: <strong>do not (don't)</strong> + 동사원형</p>
+    <p class="en-line">현재 (he/she/it): <strong>does not (doesn't)</strong> + 동사원형</p>
+    <p class="en-line">과거: <strong>did not (didn't)</strong> + 동사원형</p>
+    <hr/>
+    <p class="en-line">I <strong>do not</strong> like coffee. (= I don't like)</p>
+    <p class="ko-line">저는 커피를 좋아하지 않습니다.</p>
+    <hr/>
+    <p class="en-line">He <strong>does not</strong> play tennis. (= He doesn't play)</p>
+    <p class="ko-line">(주의: "plays" → "play")</p>
+    <hr/>
+    <p class="en-line">We <strong>did not</strong> go to school. (= We didn't go)</p>
+    <p class="ko-line">(주의: "went" → "go")</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">미래의 부정: will not (won't)</div>
+    <p class="en-line">I <strong>will not</strong> (= <strong>won't</strong>) come tomorrow.</p>
+    <p class="ko-line">저는 내일 오지 않을 것입니다.</p>
+  </div>
+
+  <p class="sub-label">짧은 줄임형 (Contractions) — 일상 대화에서 자주 사용:</p>
+
+  <div class="example-box">
+    <table class="grammar-table">
+      <thead><tr><th>긴 형태</th><th>짧은 형태</th></tr></thead>
+      <tbody>
+        <tr><td>am not</td><td>—</td></tr>
+        <tr><td>is not</td><td><strong>isn't</strong></td></tr>
+        <tr><td>are not</td><td><strong>aren't</strong></td></tr>
+        <tr><td>was not</td><td><strong>wasn't</strong></td></tr>
+        <tr><td>were not</td><td><strong>weren't</strong></td></tr>
+        <tr><td>do not</td><td><strong>don't</strong></td></tr>
+        <tr><td>does not</td><td><strong>doesn't</strong></td></tr>
+        <tr><td>did not</td><td><strong>didn't</strong></td></tr>
+        <tr><td>will not</td><td><strong>won't</strong></td></tr>
+        <tr><td>cannot</td><td><strong>can't</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ 자주 하는 실수</div>
+    <p>❌ I <s>not like</s> coffee. → ✅ I <strong>don't</strong> like coffee.</p>
+    <p>❌ She doesn't <s>likes</s> me. → ✅ She doesn't <strong>like</strong> me. (doesn't 뒤에는 동사원형!)</p>
+    <p>❌ I <s>am not like</s> it. → ✅ I <strong>don't</strong> like it. (like는 일반동사)</p>
+    <p>❌ He <s>didn't went</s>. → ✅ He <strong>didn't go</strong>. (didn't 뒤에는 동사원형!)</p>
+  </div>`,
+
+  // Lesson 13: Simple + compound sentences
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">🔗 단순문과 복합문 (Simple & Compound Sentences)</div>
+    <p>두 개의 짧은 문장을 하나로 합치면 더 자연스럽게 말할 수 있습니다. 토익 스피킹에서 점수를 올리는 핵심 기술입니다.</p>
+  </div>
+
+  <p class="sub-label">단순문 (Simple Sentence): 주어 + 동사 한 세트</p>
+  <div class="example-box">
+    <p class="en-line"><strong>I like coffee.</strong></p>
+    <p class="ko-line">저는 커피를 좋아합니다.</p>
+    <hr/>
+    <p class="en-line"><strong>She studies English.</strong></p>
+    <p class="ko-line">그녀는 영어를 공부합니다.</p>
+  </div>
+
+  <p class="sub-label">복합문 (Compound Sentence): 두 개의 단순문을 연결어로 합침</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">7가지 핵심 연결어 (FANBOYS)</div>
+    <p class="en-line"><strong>F</strong>or = ~때문에 (이유)</p>
+    <p class="en-line"><strong>A</strong>nd = 그리고</p>
+    <p class="en-line"><strong>N</strong>or = 또한 ~아니다</p>
+    <p class="en-line"><strong>B</strong>ut = 그러나</p>
+    <p class="en-line"><strong>O</strong>r = 또는</p>
+    <p class="en-line"><strong>Y</strong>et = 하지만 (= but)</p>
+    <p class="en-line"><strong>S</strong>o = 그래서</p>
+    <hr/>
+    <p class="part-desc">"FANBOYS" 첫 글자만 외우세요!</p>
+  </div>
+
+  <p class="sub-label">자주 쓰는 4개 연결어:</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">and (그리고) — 비슷한 정보를 추가</div>
+    <p class="en-line">I like coffee, <strong>and</strong> I like tea.</p>
+    <p class="ko-line">저는 커피를 좋아하고, 차도 좋아합니다.</p>
+    <hr/>
+    <p class="en-line">She is smart, <strong>and</strong> she is kind.</p>
+    <p class="ko-line">그녀는 똑똑하고, 친절합니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">but (그러나) — 반대되는 정보</div>
+    <p class="en-line">I want coffee, <strong>but</strong> I don't have time.</p>
+    <p class="ko-line">커피를 원하지만, 시간이 없습니다.</p>
+    <hr/>
+    <p class="en-line">He studies hard, <strong>but</strong> he is tired.</p>
+    <p class="ko-line">그는 열심히 공부하지만, 피곤합니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">so (그래서) — 결과</div>
+    <p class="en-line">I was tired, <strong>so</strong> I went to bed early.</p>
+    <p class="ko-line">저는 피곤해서, 일찍 잠자리에 들었습니다.</p>
+    <hr/>
+    <p class="en-line">It was raining, <strong>so</strong> I took a taxi.</p>
+    <p class="ko-line">비가 와서, 저는 택시를 탔습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">or (또는) — 선택</div>
+    <p class="en-line">Would you like coffee <strong>or</strong> tea?</p>
+    <p class="ko-line">커피와 차 중 어느 것을 원하세요?</p>
+    <hr/>
+    <p class="en-line">We can go now, <strong>or</strong> we can wait.</p>
+    <p class="ko-line">지금 갈 수도 있고, 기다릴 수도 있습니다.</p>
+  </div>
+
+  <p class="sub-label">기타 유용한 연결어:</p>
+  <div class="part-card">
+    <div class="part-tag wb-obj">because (왜냐하면 / ~때문에)</div>
+    <p class="en-line">I went home <strong>because</strong> I was tired.</p>
+    <p class="ko-line">저는 피곤해서 집에 갔습니다.</p>
+    <hr/>
+    <p class="en-line">She studied hard <strong>because</strong> she wanted to pass.</p>
+    <p class="ko-line">그녀는 합격하고 싶었기 때문에 열심히 공부했습니다.</p>
+  </div>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">when (~할 때)</div>
+    <p class="en-line">I drink coffee <strong>when</strong> I'm tired.</p>
+    <p class="ko-line">저는 피곤할 때 커피를 마십니다.</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">💡 콤마 (,) 규칙</div>
+    <p>FANBOYS 연결어 (and, but, so, or) 앞에는 보통 <strong>콤마 (,)</strong> 를 찍습니다:</p>
+    <p class="en-line">I like coffee<strong>,</strong> and I like tea.</p>
+    <p>but, because, when 등은 짧은 문장에서 콤마 없이도 OK:</p>
+    <p class="en-line">I went home because I was tired.</p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">🎯 토익 스피킹 점수 올리기</div>
+    <p>단순문만 사용하면 점수가 낮습니다. <strong>복합문을 섞어 쓰세요</strong>:</p>
+    <p>❌ 낮은 점수: "I went to a cafe. I drank coffee. It was good."</p>
+    <p>✅ 높은 점수: "I went to a cafe<strong>, and</strong> I drank coffee, <strong>which</strong> was really good."</p>
+  </div>`,
+
+  // Lesson 14: VCOP
+  `<div class="lesson-block info">
+    <div class="lesson-block-header">🌟 VCOP — 좋은 글쓰기의 4가지 요소</div>
+    <p>호주 학교에서 사용하는 학습법입니다. <strong>V</strong>ocabulary (단어), <strong>C</strong>onnectives (연결어), <strong>O</strong>peners (시작어), <strong>P</strong>unctuation (문장부호). 이 4가지를 기억하면 더 좋은 영어를 쓸 수 있습니다.</p>
+  </div>
+
+  <p class="sub-label" style="font-size:18px; color:var(--primary-dark)">🔤 V — Vocabulary (어휘 업그레이드)</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">기본 단어를 더 좋은 단어로 바꾸기</div>
+    <p class="en-line"><s>good</s> → <strong>excellent, wonderful, fantastic, great</strong></p>
+    <p class="en-line"><s>bad</s> → <strong>terrible, awful, poor, disappointing</strong></p>
+    <p class="en-line"><s>big</s> → <strong>huge, enormous, massive, large</strong></p>
+    <p class="en-line"><s>small</s> → <strong>tiny, little, mini, compact</strong></p>
+    <p class="en-line"><s>happy</s> → <strong>delighted, pleased, thrilled, glad</strong></p>
+    <p class="en-line"><s>sad</s> → <strong>upset, disappointed, depressed, unhappy</strong></p>
+    <p class="en-line"><s>nice</s> → <strong>pleasant, lovely, charming, kind</strong></p>
+    <p class="en-line"><s>said</s> → <strong>explained, mentioned, told, replied</strong></p>
+    <hr/>
+    <p class="en-line">❌ "The food was good."</p>
+    <p class="en-line">✅ "The food was <strong>excellent</strong>."</p>
+  </div>
+
+  <p class="sub-label" style="font-size:18px; color:var(--success-dark)">🔗 C — Connectives (연결어)</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-verb">문장과 아이디어를 연결</div>
+    <p><strong>추가:</strong> and, also, plus, in addition, furthermore</p>
+    <p><strong>대조:</strong> but, however, although, on the other hand</p>
+    <p><strong>이유:</strong> because, since, as, due to</p>
+    <p><strong>결과:</strong> so, therefore, as a result, thus</p>
+    <p><strong>순서:</strong> first, then, next, finally, after that</p>
+    <p><strong>예시:</strong> for example, for instance, such as</p>
+    <hr/>
+    <p class="en-line">I like coffee. <strong>However</strong>, I prefer tea in the morning.</p>
+    <p class="en-line"><strong>First</strong>, I go to school. <strong>Then</strong>, I study. <strong>Finally</strong>, I go home.</p>
+  </div>
+
+  <p class="sub-label" style="font-size:18px; color:var(--warn-dark)">🚪 O — Openers (다양한 문장 시작)</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-obj">매번 "I" 로 시작하지 마세요!</div>
+    <p class="part-desc">대부분의 한국 학생들은 모든 문장을 "I" 로 시작합니다. 다양하게 시작해보세요:</p>
+    <hr/>
+    <p><strong>시간으로 시작:</strong></p>
+    <p class="en-line"><strong>Yesterday</strong>, I went to a cafe.</p>
+    <p class="en-line"><strong>Last week</strong>, I had a meeting.</p>
+    <p class="en-line"><strong>In the morning</strong>, I drink coffee.</p>
+    <hr/>
+    <p><strong>장소로 시작:</strong></p>
+    <p class="en-line"><strong>At home</strong>, I usually relax.</p>
+    <p class="en-line"><strong>In Korea</strong>, people eat kimchi.</p>
+    <hr/>
+    <p><strong>부사로 시작:</strong></p>
+    <p class="en-line"><strong>Suddenly</strong>, it started to rain.</p>
+    <p class="en-line"><strong>Luckily</strong>, I had an umbrella.</p>
+    <hr/>
+    <p><strong>-ing 동사로 시작:</strong></p>
+    <p class="en-line"><strong>Walking to school</strong>, I saw my friend.</p>
+  </div>
+
+  <p class="sub-label" style="font-size:18px; color:var(--purple-dark)">. , ! ? P — Punctuation (문장부호)</p>
+
+  <div class="part-card">
+    <div class="part-tag wb-subj">기본 문장부호</div>
+    <p><strong>. (period / full stop)</strong> — 평서문의 끝</p>
+    <p class="en-line">I like coffee<strong>.</strong></p>
+    <hr/>
+    <p><strong>? (question mark)</strong> — 의문문의 끝</p>
+    <p class="en-line">Do you like coffee<strong>?</strong></p>
+    <hr/>
+    <p><strong>! (exclamation mark)</strong> — 감탄문 / 강한 감정</p>
+    <p class="en-line">That's amazing<strong>!</strong></p>
+    <hr/>
+    <p><strong>, (comma)</strong> — 잠깐 멈춤, 항목 나열, 연결어 앞</p>
+    <p class="en-line">I bought apples<strong>,</strong> oranges<strong>,</strong> and bananas.</p>
+    <p class="en-line">It was raining<strong>,</strong> so I took a taxi.</p>
+    <hr/>
+    <p><strong>' (apostrophe)</strong> — 줄임말 / 소유격</p>
+    <p class="en-line">I'<strong>m</strong> tired. (= I am)</p>
+    <p class="en-line">John<strong>'s</strong> book. (= 존의 책)</p>
+  </div>
+
+  <div class="lesson-block warn">
+    <div class="lesson-block-header">⚠️ 가장 중요한 규칙</div>
+    <p><strong>모든 문장은 대문자로 시작해야 합니다.</strong></p>
+    <p>❌ <s>i went</s> to school. → ✅ <strong>I</strong> went to school.</p>
+    <p>❌ what time <s>is</s> it? → ✅ <strong>What</strong> time is it?</p>
+    <hr/>
+    <p><strong>"I" 는 항상 대문자입니다.</strong> 문장 어디에 있든 상관없이.</p>
+    <p>❌ My friend and <s>i</s> went home. → ✅ My friend and <strong>I</strong> went home.</p>
+  </div>
+
+  <div class="lesson-block success">
+    <div class="lesson-block-header">⭐ VCOP 체크리스트</div>
+    <p>영어 문장을 쓸 때마다 자신에게 물어보세요:</p>
+    <p>✅ <strong>V</strong>ocabulary: 더 좋은 단어를 사용했나요?</p>
+    <p>✅ <strong>C</strong>onnectives: 두 문장을 연결할 수 있나요?</p>
+    <p>✅ <strong>O</strong>peners: 매번 "I" 로 시작하지 않았나요?</p>
+    <p>✅ <strong>P</strong>unctuation: 마침표, 콤마, 대문자가 정확한가요?</p>
   </div>`
+];
+
+// ============================================================
+// Lesson groups - structure for the grouped Grammar tab
+// ============================================================
+const LESSON_GROUPS = [
+  {
+    title: '🌱 기초',
+    titleEn: 'Basics',
+    lessons: [
+      {idx: 0, title: '1. 어순', subtitle: 'Word order'},
+      {idx: 1, title: '2. 문장 구조', subtitle: 'Sentence parts'},
+      {idx: 2, title: '3. 관사', subtitle: 'a / an / the'},
+      {idx: 6, title: '4. 대명사', subtitle: 'Pronouns'},
+      {idx: 7, title: '5. 단수와 복수', subtitle: 'Singular & plural'},
+      {idx: 5, title: '6. be동사', subtitle: 'am / is / are'}
+    ]
+  },
+  {
+    title: '🔨 문장 만들기',
+    titleEn: 'Building sentences',
+    lessons: [
+      {idx: 3, title: '7. 시제', subtitle: 'Present, past, continuous'},
+      {idx: 8, title: '8. 미래 (will)', subtitle: 'Future tense'},
+      {idx: 9, title: '9. 시간 표현', subtitle: 'Time words'},
+      {idx: 4, title: '10. 전치사', subtitle: 'Prepositions'},
+      {idx: 10, title: '11. 질문 만들기', subtitle: 'Asking questions'},
+      {idx: 11, title: '12. 부정문', subtitle: 'Negatives'}
+    ]
+  },
+  {
+    title: '🌿 한 단계 더',
+    titleEn: 'Going further',
+    lessons: [
+      {idx: 12, title: '13. 단순문 + 복합문', subtitle: 'Simple & compound'},
+      {idx: 13, title: '14. VCOP', subtitle: 'V·C·O·P framework'}
+    ]
+  }
 ];
 
 // ============================================================
