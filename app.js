@@ -155,19 +155,119 @@ function renderHome() {
 // ============================================================
 // GRAMMAR TAB
 // ============================================================
-let activeLessonIdx = 0;
+// ============================================================
+// GRAMMAR TAB (grouped accordion → lesson view)
+// ============================================================
+let activeLessonIdx = null; // null = list view, number = lesson view
+let lessonOrder = []; // flat list of lesson indices in display order
+
 function renderGrammar() {
-  $$('.lesson-tab').forEach(b => {
-    b.classList.toggle('active', parseInt(b.dataset.lesson) === activeLessonIdx);
-  });
-  $('#lesson-content').innerHTML = LESSONS[activeLessonIdx];
+  // Build the flat order from groups
+  lessonOrder = [];
+  LESSON_GROUPS.forEach(g => g.lessons.forEach(l => lessonOrder.push(l.idx)));
+
+  if (activeLessonIdx === null) {
+    showGrammarList();
+  } else {
+    showGrammarLesson(activeLessonIdx);
+  }
+
+  // Wire up navigation buttons (only once)
+  if (!$('#tab-grammar').dataset.wired) {
+    $('#lesson-back-btn').addEventListener('click', () => {
+      activeLessonIdx = null;
+      renderGrammar();
+    });
+    $('#lesson-prev-btn').addEventListener('click', () => {
+      const pos = lessonOrder.indexOf(activeLessonIdx);
+      if (pos > 0) {
+        activeLessonIdx = lessonOrder[pos - 1];
+        renderGrammar();
+      }
+    });
+    $('#lesson-next-btn').addEventListener('click', () => {
+      const pos = lessonOrder.indexOf(activeLessonIdx);
+      if (pos < lessonOrder.length - 1) {
+        activeLessonIdx = lessonOrder[pos + 1];
+        renderGrammar();
+      }
+    });
+    $('#tab-grammar').dataset.wired = '1';
+  }
 }
-$$('.lesson-tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    activeLessonIdx = parseInt(btn.dataset.lesson);
-    renderGrammar();
+
+function showGrammarList() {
+  $('#grammar-list-view').style.display = 'block';
+  $('#grammar-lesson-view').style.display = 'none';
+
+  const html = LESSON_GROUPS.map((group, gIdx) => `
+    <div class="lesson-group">
+      <div class="lesson-group-header">
+        <h3>${group.title}</h3>
+        <span class="lesson-group-en">${group.titleEn}</span>
+      </div>
+      <div class="lesson-group-list">
+        ${group.lessons.map(l => `
+          <button class="lesson-card-btn" data-lesson-idx="${l.idx}">
+            <div class="lesson-card-title">${escapeHtml(l.title)}</div>
+            <div class="lesson-card-sub">${escapeHtml(l.subtitle)}</div>
+            <div class="lesson-card-arrow">→</div>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  $('#lesson-groups').innerHTML = html;
+
+  // Wire up lesson card buttons
+  $$('.lesson-card-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeLessonIdx = parseInt(btn.dataset.lessonIdx);
+      renderGrammar();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   });
-});
+}
+
+function showGrammarLesson(idx) {
+  $('#grammar-list-view').style.display = 'none';
+  $('#grammar-lesson-view').style.display = 'block';
+  $('#lesson-content').innerHTML = LESSONS[idx];
+
+  // Show/hide prev/next buttons based on position
+  const pos = lessonOrder.indexOf(idx);
+  $('#lesson-prev-btn').disabled = pos <= 0;
+  $('#lesson-next-btn').disabled = pos >= lessonOrder.length - 1;
+}
+
+// Public function so the Write tab can jump to a specific lesson
+function jumpToLessonByName(lessonName) {
+  // Map old lesson names from Write tab feedback to new indices
+  const lessonMap = {
+    '어순': 0,
+    '문장 구조': 1,
+    '관사': 2,
+    '시제': 3,
+    '전치사': 4,
+    'be동사': 5,
+    '대명사': 6,
+    '단수와 복수': 7,
+    '복수': 7,
+    '미래': 8,
+    'will': 8,
+    '시간 표현': 9,
+    '질문': 10,
+    '의문문': 10,
+    '부정문': 11,
+    '복합문': 12,
+    'VCOP': 13
+  };
+  const idx = lessonMap[lessonName];
+  if (idx === undefined) return;
+  activeLessonIdx = idx;
+  switchTab('grammar');
+}
 
 // ============================================================
 // LEARN TAB - Spaced Repetition Flashcards
