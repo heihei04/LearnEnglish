@@ -945,3 +945,53 @@ html, body {
   margin-left: 8px;
   font-weight: 400;
 }
+
+/* ============================================================
+   CHAPTER SECTION VISUAL SEPARATION
+   Make each numbered section (❶ ❷ ❸ etc.) look like a distinct unit
+   ============================================================ */
+
+/* Bigger, more prominent section breaks */
+.section-title-large {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  margin: 36px 0 0;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+  border-bottom: none;
+}
+
+/* Section intro paragraph - sits flush below the section header */
+.section-intro {
+  background: var(--bg-elevated);
+  padding: 16px 18px;
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+/* Add subtle dotted divider between sections to reinforce separation */
+.section-title-large::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--primary-light);
+  border-radius: 999px;
+  margin: 0 0 8px;
+  opacity: 0.6;
+}
+
+/* First section in lesson doesn't need extra top margin */
+.lesson-content > .section-title-large:first-of-type,
+.lesson-content > .lesson-block + .section-title-large {
+  margin-top: 24px;
+}
