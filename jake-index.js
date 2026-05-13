@@ -864,6 +864,68 @@ const JAKE_AI_PRACTICE = {
       { prompt: "저희 부모님은 두 분 다 의사이십니다.", sentence: "_____ of my parents are doctors.", answer: "Both", lesson: "부정대명사" },
       { prompt: "그들은 서로 잘 알고 지냅니다.", sentence: "They know _____ very well.", answer: "each other", lesson: "부정대명사" }
     ]
+  },
+
+  // ====== CHAPTER 5 ACTIVITIES ======
+
+  "ch5-a": {
+    title: "A. 빈칸에 알맞은 형태 (형용사 또는 부사)를 넣으세요",
+    instruction: "괄호 안의 단어를 형용사 또는 부사 형태로 바꾸어 빈칸에 넣으세요. 한 단어로만 답하세요.",
+    type: "fill-blank",
+    questions: [
+      { prompt: "그는 매우 조심스럽게 운전합니다.", sentence: "He drives very _____. (careful)", answer: "carefully", lesson: "부사" },
+      { prompt: "그 케이크는 정말 맛있어 보여요.", sentence: "The cake looks really _____. (delicious)", answer: "delicious", lesson: "형용사" },
+      { prompt: "그녀는 영어를 유창하게 말합니다.", sentence: "She speaks English _____. (fluent)", answer: "fluently", lesson: "부사" },
+      { prompt: "그는 피아노를 잘 칩니다.", sentence: "He plays the piano _____. (good)", answer: "well", lesson: "부사 — 불규칙" },
+      { prompt: "오늘은 정말 더운 날입니다.", sentence: "Today is a really _____ day. (hot)", answer: "hot", lesson: "형용사" },
+      { prompt: "아기가 행복하게 미소 지었습니다.", sentence: "The baby smiled _____. (happy)", answer: "happily", lesson: "부사" },
+      { prompt: "그 시험은 굉장히 어려웠습니다.", sentence: "The exam was extremely _____. (difficult)", answer: "difficult", lesson: "형용사" },
+      { prompt: "그는 빠르게 달릴 수 있습니다.", sentence: "He can run _____. (fast)", answer: "fast", lesson: "부사 — 형태 동일" }
+    ]
+  },
+
+  "ch5-b": {
+    title: "B. 빈도부사를 사용하여 본인의 일상에 대해 자유롭게 문장을 만들어 보세요",
+    instruction: "주어진 빈도부사를 사용하여 본인의 습관이나 일상에 관한 문장을 만들어 보세요.\n예시:\n  • I always drink coffee in the morning.\n  • I usually go to bed at 11 P.M.\n  • I never skip breakfast.",
+    type: "complete-sentence",
+    questions: [
+      { prompt: "자신이 항상 하는 일을 쓰세요.", hint: "( always )", template: "I always ___________", expectedPattern: "I always [verb phrase]" },
+      { prompt: "자신이 보통 하는 일을 쓰세요.", hint: "( usually )", template: "I usually ___________", expectedPattern: "I usually [verb phrase]" },
+      { prompt: "자신이 자주 하는 일을 쓰세요.", hint: "( often )", template: "I often ___________", expectedPattern: "I often [verb phrase]" },
+      { prompt: "자신이 가끔 하는 일을 쓰세요.", hint: "( sometimes )", template: "I sometimes ___________", expectedPattern: "I sometimes [verb phrase]" },
+      { prompt: "자신이 거의 안 하는 일을 쓰세요.", hint: "( rarely )", template: "I rarely ___________", expectedPattern: "I rarely [verb phrase]" },
+      { prompt: "자신이 절대 안 하는 일을 쓰세요.", hint: "( never )", template: "I never ___________", expectedPattern: "I never [verb phrase]" }
+    ]
+  },
+
+  "ch5-c": {
+    title: "C. 비교급 또는 최상급으로 문장을 완성하세요",
+    instruction: "괄호 안의 형용사를 비교급이나 최상급으로 바꾸어 빈칸에 넣으세요. 형태에 주의하세요 (the가 필요한 경우도 있음).",
+    type: "fill-blank",
+    questions: [
+      { prompt: "오늘은 어제보다 더 따뜻합니다.", sentence: "Today is _____ than yesterday. (warm)", answer: "warmer", lesson: "비교급" },
+      { prompt: "이 가방은 저 가방보다 더 비쌉니다.", sentence: "This bag is _____ than that one. (expensive)", answer: "more expensive", lesson: "비교급" },
+      { prompt: "에베레스트산은 세계에서 가장 높은 산입니다.", sentence: "Mount Everest is _____ mountain in the world. (high)", answer: "the highest", lesson: "최상급" },
+      { prompt: "내 영어 실력은 작년보다 더 좋아졌습니다.", sentence: "My English is _____ than last year. (good)", answer: "better", lesson: "비교급 — 불규칙" },
+      { prompt: "이것이 제가 본 영화 중 최고입니다.", sentence: "This is _____ movie I've ever seen. (good)", answer: "the best", lesson: "최상급 — 불규칙" },
+      { prompt: "그는 그녀보다 더 빨리 달립니다.", sentence: "He runs _____ than her. (fast)", answer: "faster", lesson: "비교급 — 부사" },
+      { prompt: "오늘 교통은 어제보다 더 나빴습니다.", sentence: "The traffic today was _____ than yesterday. (bad)", answer: "worse", lesson: "비교급 — 불규칙" },
+      { prompt: "이것은 우리 반에서 가장 어려운 책입니다.", sentence: "This is _____ book in our class. (difficult)", answer: "the most difficult", lesson: "최상급" }
+    ]
+  },
+
+  "ch5-d": {
+    title: "D. 다음 문장의 틀린 부분을 바르게 고치세요",
+    instruction: "각 문장에는 형용사·부사·비교급·최상급 사용에 오류가 있습니다. 틀린 부분을 찾아 고친 후, 전체 문장을 다시 쓰세요.",
+    type: "correction",
+    questions: [
+      { sentence: "She sings very good.", correctedSentence: "She sings very well.", explanation: "동사 sings를 꾸미려면 부사가 필요합니다. good (형용사) → well (부사)." },
+      { sentence: "He always is late for work.", correctedSentence: "He is always late for work.", explanation: "빈도부사 always는 be동사 뒤에 옵니다." },
+      { sentence: "This restaurant is more better than the other one.", correctedSentence: "This restaurant is better than the other one.", explanation: "better는 이미 비교급입니다. more를 함께 쓰지 않습니다." },
+      { sentence: "She is tallest girl in the class.", correctedSentence: "She is the tallest girl in the class.", explanation: "최상급 앞에는 반드시 the를 붙입니다." },
+      { sentence: "My new phone is more cheap than my old one.", correctedSentence: "My new phone is cheaper than my old one.", explanation: "cheap은 짧은 단어이므로 -er을 붙입니다. more cheap이 아니라 cheaper." },
+      { sentence: "I don't never eat fast food.", correctedSentence: "I never eat fast food.", explanation: "never는 그 자체로 부정의 의미입니다. don't와 같이 쓰지 않습니다." }
+    ]
   }
 };
 
