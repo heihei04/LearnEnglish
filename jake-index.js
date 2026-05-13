@@ -745,6 +745,62 @@ const JAKE_AI_PRACTICE = {
       { korean: "우리는 2020년부터 이 동네에 살고 있습니다.", hint: "( live / neighborhood / since )", expectedPattern: "We have lived in this neighborhood since 2020" },
       { korean: "그녀는 두 시간 동안 책을 읽고 있습니다.", hint: "( read / book / for two hours )", expectedPattern: "She has been reading a book for two hours" }
     ]
+  },
+
+  // ====== CHAPTER 3 ACTIVITIES ======
+
+  "ch3-a": {
+    title: "A. 다음 문장의 틀린 부분을 바르게 고치세요",
+    instruction: "각 문장에는 조동사 사용에 오류가 있습니다. 틀린 부분을 찾아 고친 후, 전체 문장을 다시 쓰세요.",
+    type: "correction",
+    questions: [
+      { sentence: "He can speaking three languages.", correctedSentence: "He can speak three languages.", explanation: "조동사 can 뒤에는 동사원형이 옵니다. speaking이 아니라 speak." },
+      { sentence: "I could to finish the work yesterday.", correctedSentence: "I could finish the work yesterday.", explanation: "조동사 could 뒤에는 to 없이 동사원형이 바로 옵니다." },
+      { sentence: "She was able to fixed the printer.", correctedSentence: "She was able to fix the printer.", explanation: "be able to 뒤에는 동사원형이 옵니다. fixed가 아니라 fix." },
+      { sentence: "We were able to not solve the problem.", correctedSentence: "We were not able to solve the problem.", explanation: "부정문에서 not은 be동사 바로 뒤에 옵니다. \"were not able to\" 가 올바른 순서입니다." },
+      { sentence: "She will able to join the meeting tomorrow.", correctedSentence: "She will be able to join the meeting tomorrow.", explanation: "미래형은 \"will + be able to\"로, be가 빠지면 안 됩니다." }
+    ]
+  },
+
+  "ch3-b": {
+    title: "B. 본인의 능력에 대해 자유롭게 문장을 만들어 보세요",
+    instruction: "아래 예시를 참고하여 본인의 능력에 관한 문장을 만들어 보세요.\n예시:\n  • I can play the guitar.\n  • I can't ski.\n  • I was able to graduate from university.",
+    type: "complete-sentence",
+    questions: [
+      { prompt: "자신이 할 수 있는 일을 쓰세요.", hint: "( can )", template: "I can ___________", expectedPattern: "I can [any verb phrase]" },
+      { prompt: "자신이 잘하는 다른 일을 쓰세요.", hint: "( can )", template: "I can ___________", expectedPattern: "I can [any verb phrase]" },
+      { prompt: "자신이 못 하는 일을 쓰세요.", hint: "( can't )", template: "I can't ___________", expectedPattern: "I can't [any verb phrase]" },
+      { prompt: "자신이 못 하는 다른 일을 쓰세요.", hint: "( can't )", template: "I can't ___________", expectedPattern: "I can't [any verb phrase]" },
+      { prompt: "과거에 할 수 있었던 일을 쓰세요.", hint: "( was able to )", template: "I was able to ___________", expectedPattern: "I was able to [any verb phrase]" },
+      { prompt: "과거에 해낼 수 있었던 다른 일을 쓰세요.", hint: "( was able to )", template: "I was able to ___________", expectedPattern: "I was able to [any verb phrase]" }
+    ]
+  },
+
+  "ch3-c": {
+    title: "C. 한국어 문장에 맞게 알맞은 동사를 골라 문장을 완성하세요",
+    instruction: "단어 상자에서 알맞은 동사를 고르고, will이나 be going to를 활용하여 영어로 답하세요.\n단어 상자: [ rain / attend / go / sell ]",
+    type: "complete-sentence",
+    questions: [
+      { prompt: "그들은 회의에 참여하지 않을 것입니다. (의지)", hint: "( will not + attend )", template: "They ___________ the meeting.", expectedPattern: "They will not attend the meeting" },
+      { prompt: "제 생각엔 내일 비가 올 것 같습니다. (예측)", hint: "( will + rain )", template: "I think it ___________ tomorrow.", expectedPattern: "I think it will rain tomorrow" },
+      { prompt: "우리는 캠핑을 갈 것입니다. (계획)", hint: "( be going to + go )", template: "We ___________ camping.", expectedPattern: "We are going to go camping" },
+      { prompt: "저는 차를 팔지 않을 것입니다. (계획)", hint: "( be going to + not + sell )", template: "I ___________ my car.", expectedPattern: "I am not going to sell my car" },
+      { prompt: "그녀는 오늘 회사에 가지 않을 것입니다. (의지)", hint: "( will not + go )", template: "She ___________ to work today.", expectedPattern: "She will not go to work today" }
+    ]
+  },
+
+  "ch3-d": {
+    title: "D. 한국어 문장에 맞게 알맞은 조동사를 골라 문장을 완성하세요",
+    instruction: "단어 상자에서 가장 알맞은 조동사 표현을 골라 빈칸을 채우세요.\n단어 상자: [ have to / has to / had to / should / shouldn't / don't have to / didn't have to ]",
+    type: "fill-blank",
+    questions: [
+      { prompt: "돈을 내지 않아도 됩니다.", sentence: "You _____ pay.", answer: "don't have to", lesson: "have to" },
+      { prompt: "지하철을 타는 것이 좋겠습니다.", sentence: "You _____ take the subway.", answer: "should", lesson: "should" },
+      { prompt: "그에게 지금 전화하면 안 돼요.", sentence: "You _____ call him now.", answer: "shouldn't", lesson: "should" },
+      { prompt: "그들은 서두를 필요가 없었습니다.", sentence: "They _____ hurry.", answer: "didn't have to", lesson: "have to" },
+      { prompt: "저는 그 시험에 꼭 합격해야 합니다.", sentence: "I _____ pass the test.", answer: "have to", lesson: "have to" },
+      { prompt: "저는 계획을 변경해야만 했습니다.", sentence: "I _____ change the plan.", answer: "had to", lesson: "have to" }
+    ]
   }
 };
 
