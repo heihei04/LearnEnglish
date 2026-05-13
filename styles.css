@@ -1274,3 +1274,87 @@ html, body {
   .fc-mark { justify-content: flex-end; }
   .flashcard-base { font-size: 30px; }
 }
+
+/* ============================================================
+   FLASHCARD CHOICE STYLE (used for noun classification)
+   ============================================================ */
+.flashcard-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.flashcard-choice-btn {
+  padding: 16px 18px;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.flashcard-choice-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+.flashcard-choice-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+.flashcard-choice-btn:disabled {
+  cursor: default;
+}
+.flashcard-choice-btn.correct {
+  background: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success-dark) !important;
+}
+.flashcard-choice-btn.wrong {
+  background: var(--danger-light) !important;
+  border-color: var(--danger) !important;
+  color: var(--danger-dark) !important;
+  text-decoration: line-through;
+}
+.flashcard-choice-btn.dim {
+  opacity: 0.45;
+}
+
+.flashcard-feedback {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.flashcard-feedback.correct {
+  background: var(--success-soft);
+  color: var(--success-dark);
+  border-left: 3px solid var(--success);
+}
+.flashcard-feedback.wrong {
+  background: var(--warn-soft);
+  color: var(--warn-dark);
+  border-left: 3px solid var(--warn);
+}
+.flashcard-feedback small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.fc-result-note {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  line-height: 1.5;
+  font-style: italic;
+}
