@@ -804,22 +804,7 @@ const JAKE_AI_PRACTICE = {
   },
 
   // ====== CHAPTER 4 ACTIVITIES ======
-
-  "ch4-a": {
-    title: "A. 다음 명사가 셀 수 있는지 셀 수 없는지 답하세요",
-    instruction: "각 명사가 '셀 수 있음' (countable)인지 '셀 수 없음' (uncountable)인지 한국어로 답하세요. 답은 \"셀 수 있음\" 또는 \"셀 수 없음\" 중 하나로만 쓰세요.",
-    type: "fill-blank",
-    questions: [
-      { prompt: "명사: information", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
-      { prompt: "명사: sandwich", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 있음", lesson: "명사" },
-      { prompt: "명사: furniture", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
-      { prompt: "명사: airplane", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 있음", lesson: "명사" },
-      { prompt: "명사: advice", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
-      { prompt: "명사: question", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 있음", lesson: "명사" },
-      { prompt: "명사: knowledge", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
-      { prompt: "명사: baggage", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" }
-    ]
-  },
+  // Note: ch4-a (countable vs uncountable) is now a flashcard drill — see JAKE_FLASHCARDS["ch4-noun-count"]
 
   "ch4-b": {
     title: "B. 빈칸에 알맞은 관사를 넣으세요 (a / an / the / 없음)",
@@ -928,6 +913,56 @@ const JAKE_FLASHCARDS = {
       { base: "put", past: "put", pp: "put", meaning: "놓다" },
       { base: "cut", past: "cut", pp: "cut", meaning: "자르다" },
       { base: "let", past: "let", pp: "let", meaning: "허락하다" }
+    ]
+  },
+
+  "ch4-noun-count": {
+    type: "choice",
+    title: "셀 수 있는 vs 셀 수 없는 명사",
+    instruction: "각 명사가 셀 수 있는 명사인지 셀 수 없는 명사인지 선택하세요. 끝나면 결과를 보여드립니다.",
+    faceLabel: "명사 (noun)",
+    options: ["셀 수 있는 명사", "셀 수 없는 명사"],
+    cards: [
+      // Countable (correctIndex: 0)
+      { word: "sandwich", meaning: "샌드위치", correctIndex: 0 },
+      { word: "tomato", meaning: "토마토", correctIndex: 0 },
+      { word: "airplane", meaning: "비행기", correctIndex: 0 },
+      { word: "question", meaning: "질문", correctIndex: 0 },
+      { word: "story", meaning: "이야기", correctIndex: 0 },
+      { word: "umbrella", meaning: "우산", correctIndex: 0 },
+      { word: "child", meaning: "아이", correctIndex: 0 },
+      { word: "island", meaning: "섬", correctIndex: 0 },
+      { word: "pizza", meaning: "피자", correctIndex: 0, note: "피자 한 판 (one pizza), 두 판 (two pizzas)처럼 셀 수 있습니다." },
+      { word: "weekend", meaning: "주말", correctIndex: 0 },
+      { word: "vegetable", meaning: "채소", correctIndex: 0 },
+      { word: "fish", meaning: "물고기 / 생선", correctIndex: 0, note: "fish는 셀 수 있는 명사이지만, 복수형도 fish입니다 (one fish, two fish)." },
+      { word: "drama", meaning: "드라마", correctIndex: 0 },
+      { word: "book", meaning: "책", correctIndex: 0 },
+      { word: "phone", meaning: "전화기", correctIndex: 0 },
+      { word: "friend", meaning: "친구", correctIndex: 0 },
+      { word: "minute", meaning: "분", correctIndex: 0 },
+
+      // Uncountable (correctIndex: 1)
+      { word: "bread", meaning: "빵", correctIndex: 1, note: "빵은 셀 수 없습니다. 빵 한 조각은 \"a slice of bread\"." },
+      { word: "paper", meaning: "종이", correctIndex: 1, note: "종이 한 장은 \"a piece of paper\"." },
+      { word: "water", meaning: "물", correctIndex: 1 },
+      { word: "health", meaning: "건강", correctIndex: 1, note: "추상 명사라서 셀 수 없습니다." },
+      { word: "time", meaning: "시간", correctIndex: 1 },
+      { word: "news", meaning: "뉴스", correctIndex: 1, note: "-s로 끝나도 셀 수 없는 명사입니다. is/was를 씁니다." },
+      { word: "traffic", meaning: "교통", correctIndex: 1 },
+      { word: "music", meaning: "음악", correctIndex: 1 },
+      { word: "money", meaning: "돈", correctIndex: 1, note: "돈은 셀 수 없습니다. 돈을 셀 때는 \"five dollars\" 처럼 단위를 씁니다." },
+      { word: "jewelry", meaning: "보석류", correctIndex: 1, note: "총칭 명사 — 보석류 전체를 의미하므로 셀 수 없습니다." },
+      { word: "furniture", meaning: "가구", correctIndex: 1, note: "총칭 명사 — 가구 한 개는 \"a piece of furniture\"." },
+      { word: "beef", meaning: "소고기", correctIndex: 1 },
+      { word: "rice", meaning: "쌀", correctIndex: 1 },
+      { word: "equipment", meaning: "장비", correctIndex: 1 },
+      { word: "coffee", meaning: "커피", correctIndex: 1, note: "보통 셀 수 없습니다. 한 잔은 \"a cup of coffee\"." },
+      { word: "chocolate", meaning: "초콜릿", correctIndex: 1 },
+      { word: "advice", meaning: "조언", correctIndex: 1, note: "조언 한 마디는 \"a piece of advice\"." },
+      { word: "baggage", meaning: "짐", correctIndex: 1, note: "luggage와 동의어. 가방 하나는 \"a piece of baggage\"." },
+      { word: "knowledge", meaning: "지식", correctIndex: 1 },
+      { word: "information", meaning: "정보", correctIndex: 1, note: "한국 학생들이 가장 자주 틀리는 단어 — 절대 informations라고 쓰지 마세요!" }
     ]
   }
 };
