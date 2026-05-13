@@ -160,11 +160,24 @@ function renderHome() {
 // ============================================================
 let activeLessonIdx = null; // null = list view, number = lesson view
 let lessonOrder = []; // flat list of lesson indices in display order
+let activeTrack = 'haemin'; // 'haemin' or 'jake'
+
+// Get the lessons and groups for the active track
+function getActiveLessons() {
+  if (activeTrack === 'jake') {
+    return { lessons: JAKE_LESSONS, groups: JAKE_LESSON_GROUPS };
+  }
+  return { lessons: LESSONS, groups: LESSON_GROUPS };
+}
 
 function renderGrammar() {
+  const { groups } = getActiveLessons();
   // Build the flat order from groups
   lessonOrder = [];
-  LESSON_GROUPS.forEach(g => g.lessons.forEach(l => lessonOrder.push(l.idx)));
+  groups.forEach(g => g.lessons.forEach(l => lessonOrder.push(l.idx)));
+
+  // Sync track buttons
+  $$('.track-btn').forEach(b => b.classList.toggle('active', b.dataset.track === activeTrack));
 
   if (activeLessonIdx === null) {
     showGrammarList();
@@ -174,22 +187,34 @@ function renderGrammar() {
 
   // Wire up navigation buttons (only once)
   if (!$('#tab-grammar').dataset.wired) {
-    $('#lesson-back-btn').addEventListener('click', () => {
-      activeLessonIdx = null;
-      renderGrammar();
-    });
-    $('#lesson-prev-btn').addEventListener('click', () => {
-      const pos = lessonOrder.indexOf(activeLessonIdx);
-      if (pos > 0) {
-        activeLessonIdx = lessonOrder[pos - 1];
+    // Track switcher
+    $$('.track-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTrack = btn.dataset.track;
+        activeLessonIdx = null; // back to list when switching tracks
         renderGrammar();
-      }
+      });
     });
-    $('#lesson-next-btn').addEventListener('click', () => {
-      const pos = lessonOrder.indexOf(activeLessonIdx);
-      if (pos < lessonOrder.length - 1) {
-        activeLessonIdx = lessonOrder[pos + 1];
+
+    // Back/prev/next live inside the lesson view container, so wire them globally via delegation
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#lesson-back-btn')) {
+        activeLessonIdx = null;
         renderGrammar();
+      } else if (e.target.closest('#lesson-prev-btn')) {
+        const pos = lessonOrder.indexOf(activeLessonIdx);
+        if (pos > 0) {
+          activeLessonIdx = lessonOrder[pos - 1];
+          renderGrammar();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else if (e.target.closest('#lesson-next-btn')) {
+        const pos = lessonOrder.indexOf(activeLessonIdx);
+        if (pos < lessonOrder.length - 1) {
+          activeLessonIdx = lessonOrder[pos + 1];
+          renderGrammar();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       }
     });
     $('#tab-grammar').dataset.wired = '1';
@@ -200,7 +225,8 @@ function showGrammarList() {
   $('#grammar-list-view').style.display = 'block';
   $('#grammar-lesson-view').style.display = 'none';
 
-  const html = LESSON_GROUPS.map((group, gIdx) => `
+  const { groups } = getActiveLessons();
+  const html = groups.map((group, gIdx) => `
     <div class="lesson-group">
       <div class="lesson-group-header">
         <h3>${group.title}</h3>
@@ -232,13 +258,106 @@ function showGrammarList() {
 
 function showGrammarLesson(idx) {
   $('#grammar-list-view').style.display = 'none';
-  $('#grammar-lesson-view').style.display = 'block';
-  $('#lesson-content').innerHTML = LESSONS[idx];
+  const lessonView = $('#grammar-lesson-view');
+  lessonView.style.display = 'block';
+
+  const { lessons } = getActiveLessons();
+  // Rebuild the lesson view (back button + content + nav buttons)
+  // We do this every render so the navigation works for both tracks
+  lessonView.innerHTML = `
+    <button class="back-btn" id="lesson-back-btn">← 목록으로 (Back to list)</button>
+    <div id="lesson-content" class="lesson-content">${lessons[idx]}</div>
+    <div class="lesson-nav">
+      <button class="ctrl-btn" id="lesson-prev-btn">← 이전 레슨</button>
+      <button class="ctrl-btn" id="lesson-next-btn">다음 레슨 →</button>
+    </div>
+  `;
 
   // Show/hide prev/next buttons based on position
   const pos = lessonOrder.indexOf(idx);
   $('#lesson-prev-btn').disabled = pos <= 0;
   $('#lesson-next-btn').disabled = pos >= lessonOrder.length - 1;
+
+  // Initialize any interactive practice blocks (Jake track has these)
+  initPracticeBlocks();
+}
+
+// Initialize interactive practice blocks inside Jake lessons
+function initPracticeBlocks() {
+  $$('.practice-block').forEach(block => {
+    if (block.dataset.initialized) return;
+    block.dataset.initialized = '1';
+    const id = parseInt(block.dataset.practiceId);
+    if (isNaN(id) || typeof JAKE_PRACTICE_DATA === 'undefined' || !JAKE_PRACTICE_DATA[id]) {
+      console.error('No practice data for id', id);
+      return;
+    }
+    renderPracticeBlock(block, JAKE_PRACTICE_DATA[id]);
+  });
+}
+
+function renderPracticeBlock(container, data) {
+  let answered = new Array(data.questions.length).fill(null);
+  let revealed = new Array(data.questions.length).fill(false);
+
+  function render() {
+    const total = data.questions.length;
+    const correct = answered.filter((a, i) => a === data.questions[i].answer).length;
+    const completed = answered.filter(a => a !== null).length;
+
+    container.innerHTML = `
+      <div class="practice-card">
+        <div class="practice-header">
+          <h4>📝 ${escapeHtml(data.title)}</h4>
+          <div class="practice-progress">${completed} / ${total} ${completed === total ? `· 정답 ${correct}/${total}` : ''}</div>
+        </div>
+        ${data.questions.map((q, qi) => `
+          <div class="practice-question ${answered[qi] !== null ? 'answered' : ''}">
+            <p class="practice-prompt"><strong>${qi+1}.</strong> ${escapeHtml(q.prompt)}</p>
+            <div class="practice-options">
+              ${q.options.map((opt, oi) => {
+                let cls = 'practice-option';
+                if (answered[qi] !== null) {
+                  if (oi === q.answer) cls += ' correct';
+                  else if (oi === answered[qi]) cls += ' wrong';
+                }
+                return `<button class="${cls}" data-q="${qi}" data-o="${oi}" ${answered[qi] !== null ? 'disabled' : ''}>${escapeHtml(opt)}</button>`;
+              }).join('')}
+            </div>
+            ${answered[qi] !== null ? `
+              <div class="practice-explain ${answered[qi] === q.answer ? 'correct' : 'wrong'}">
+                ${answered[qi] === q.answer ? '✅ 정답!' : '❌ 다시 보세요.'} <br/>
+                <span class="practice-explain-text">${escapeHtml(q.explanation)}</span>
+              </div>
+            ` : ''}
+          </div>
+        `).join('')}
+        ${completed === total ? `
+          <button class="ctrl-btn practice-reset-btn">↻ 다시 풀기 (Try again)</button>
+        ` : ''}
+      </div>
+    `;
+
+    container.querySelectorAll('.practice-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        const qi = parseInt(btn.dataset.q);
+        const oi = parseInt(btn.dataset.o);
+        answered[qi] = oi;
+        render();
+      });
+    });
+
+    const resetBtn = container.querySelector('.practice-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        answered = new Array(data.questions.length).fill(null);
+        render();
+      });
+    }
+  }
+
+  render();
 }
 
 // Public function so the Write tab can jump to a specific lesson
