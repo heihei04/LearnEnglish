@@ -306,6 +306,18 @@ function initPracticeBlocks() {
     }
     renderAIPracticeBlock(block, JAKE_AI_PRACTICE[id], id);
   });
+
+  // Initialize flashcard drill blocks
+  $$('.flashcard-block').forEach(block => {
+    if (block.dataset.initialized) return;
+    block.dataset.initialized = '1';
+    const id = block.dataset.flashcardId;
+    if (!id || typeof JAKE_FLASHCARDS === 'undefined' || !JAKE_FLASHCARDS[id]) {
+      console.error('No flashcard data for id', id);
+      return;
+    }
+    renderFlashcardBlock(block, JAKE_FLASHCARDS[id], id);
+  });
 }
 
 function renderPracticeBlock(container, data) {
@@ -520,6 +532,290 @@ function renderAIPracticeBlock(container, data, blockId) {
 
   render();
 }
+
+// ============================================================
+// FLASHCARD DRILL BLOCK
+// Self-contained: shows base verb, user types past + p.p.,
+// shows immediate feedback per card, then results summary at end.
+// ============================================================
+function renderFlashcardBlock(container, data, blockId) {
+  // Shuffle the cards each session
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  const state = {
+    cards: shuffle(data.cards),
+    idx: 0,
+    pastInput: '',
+    ppInput: '',
+    revealed: false,        // current card has been submitted
+    results: [],            // {base, past, pp, userPast, userPp, pastCorrect, ppCorrect}
+    finished: false,
+    onlyWrong: false        // for "retry wrong only" mode
+  };
+
+  // Normalize answer: lowercase, trim. Accept multiple correct answers separated by " / " or " or "
+  function normalizeAnswer(s) {
+    return (s || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+  function isCorrect(userInput, correctAnswers) {
+    const u = normalizeAnswer(userInput);
+    if (!u) return false;
+    // correctAnswers may be a string with " / " separator for variants
+    const variants = correctAnswers.split(/\s*\/\s*/).map(normalizeAnswer);
+    return variants.includes(u);
+  }
+
+  function render() {
+    if (state.finished) {
+      renderResults();
+      return;
+    }
+    renderCard();
+  }
+
+  function renderCard() {
+    const card = state.cards[state.idx];
+    const total = state.cards.length;
+    const cardNum = state.idx + 1;
+
+    const result = state.revealed ? state.results[state.idx] : null;
+
+    container.innerHTML = `
+      <div class="flashcard-card">
+        <div class="flashcard-header">
+          <h4>🃏 ${escapeHtml(data.title)}</h4>
+          <div class="flashcard-progress">${cardNum} / ${total}</div>
+        </div>
+        <p class="flashcard-instruction">${escapeHtml(data.instruction || '')}</p>
+
+        <div class="flashcard-face">
+          <div class="flashcard-label">현재 (base)</div>
+          <div class="flashcard-base">${escapeHtml(card.base)}</div>
+          ${card.meaning ? `<div class="flashcard-meaning">${escapeHtml(card.meaning)}</div>` : ''}
+        </div>
+
+        <div class="flashcard-inputs">
+          <div class="flashcard-input-row">
+            <label>과거 (past):</label>
+            <input type="text"
+                   class="flashcard-input"
+                   id="fc-past-${blockId}"
+                   value="${escapeHtml(state.pastInput)}"
+                   ${state.revealed ? 'disabled' : ''}
+                   autocomplete="off"
+                   autocapitalize="off"
+                   placeholder="e.g. went" />
+            ${state.revealed ? (result.pastCorrect
+              ? `<span class="fc-mark correct">✓</span>`
+              : `<span class="fc-mark wrong">✗ <small>${escapeHtml(card.past)}</small></span>`
+            ) : ''}
+          </div>
+          <div class="flashcard-input-row">
+            <label>과거분사 (p.p.):</label>
+            <input type="text"
+                   class="flashcard-input"
+                   id="fc-pp-${blockId}"
+                   value="${escapeHtml(state.ppInput)}"
+                   ${state.revealed ? 'disabled' : ''}
+                   autocomplete="off"
+                   autocapitalize="off"
+                   placeholder="e.g. gone" />
+            ${state.revealed ? (result.ppCorrect
+              ? `<span class="fc-mark correct">✓</span>`
+              : `<span class="fc-mark wrong">✗ <small>${escapeHtml(card.pp)}</small></span>`
+            ) : ''}
+          </div>
+        </div>
+
+        <div class="flashcard-actions">
+          ${!state.revealed
+            ? `<button class="ctrl-btn primary fc-submit">✓ 확인 (Check)</button>`
+            : (state.idx < state.cards.length - 1
+                ? `<button class="ctrl-btn primary fc-next">다음 카드 →</button>`
+                : `<button class="ctrl-btn primary fc-finish">📊 결과 보기 (See results)</button>`)
+          }
+        </div>
+      </div>
+    `;
+
+    // Wire inputs
+    const pastInput = container.querySelector(`#fc-past-${blockId}`);
+    const ppInput = container.querySelector(`#fc-pp-${blockId}`);
+    if (pastInput) {
+      pastInput.addEventListener('input', (e) => { state.pastInput = e.target.value; });
+      pastInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); ppInput?.focus(); }
+      });
+    }
+    if (ppInput) {
+      ppInput.addEventListener('input', (e) => { state.ppInput = e.target.value; });
+      ppInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); handleSubmit(); }
+      });
+    }
+
+    const submitBtn = container.querySelector('.fc-submit');
+    if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
+
+    const nextBtn = container.querySelector('.fc-next');
+    if (nextBtn) nextBtn.addEventListener('click', handleNext);
+
+    const finishBtn = container.querySelector('.fc-finish');
+    if (finishBtn) finishBtn.addEventListener('click', handleFinish);
+
+    // Focus the first empty input
+    setTimeout(() => {
+      if (!state.revealed) {
+        if (!state.pastInput && pastInput) pastInput.focus();
+        else if (!state.ppInput && ppInput) ppInput.focus();
+      }
+    }, 50);
+  }
+
+  function handleSubmit() {
+    const card = state.cards[state.idx];
+    const pastCorrect = isCorrect(state.pastInput, card.past);
+    const ppCorrect = isCorrect(state.ppInput, card.pp);
+    state.results[state.idx] = {
+      base: card.base,
+      past: card.past,
+      pp: card.pp,
+      meaning: card.meaning || '',
+      userPast: state.pastInput,
+      userPp: state.ppInput,
+      pastCorrect,
+      ppCorrect
+    };
+    state.revealed = true;
+    render();
+  }
+
+  function handleNext() {
+    state.idx += 1;
+    state.pastInput = '';
+    state.ppInput = '';
+    state.revealed = false;
+    render();
+  }
+
+  function handleFinish() {
+    state.finished = true;
+    render();
+  }
+
+  function renderResults() {
+    const total = state.results.length;
+    const fullyCorrect = state.results.filter(r => r.pastCorrect && r.ppCorrect).length;
+    const wrong = state.results.filter(r => !r.pastCorrect || !r.ppCorrect);
+    const correct = state.results.filter(r => r.pastCorrect && r.ppCorrect);
+
+    let scoreLabel, scoreClass;
+    const pct = Math.round((fullyCorrect / total) * 100);
+    if (pct === 100) { scoreLabel = '완벽해요! 🎉'; scoreClass = 'perfect'; }
+    else if (pct >= 80) { scoreLabel = '아주 잘했어요! 👏'; scoreClass = 'great'; }
+    else if (pct >= 50) { scoreLabel = '잘했어요. 조금 더 연습해봐요. 💪'; scoreClass = 'good'; }
+    else { scoreLabel = '괜찮아요. 다시 한번 해봅시다! 🌱'; scoreClass = 'try-again'; }
+
+    container.innerHTML = `
+      <div class="flashcard-card">
+        <div class="flashcard-results-header ${scoreClass}">
+          <div class="fc-score-big">${fullyCorrect} / ${total}</div>
+          <div class="fc-score-pct">${pct}%</div>
+          <div class="fc-score-label">${scoreLabel}</div>
+        </div>
+
+        ${wrong.length > 0 ? `
+          <div class="fc-results-section">
+            <h4 class="fc-results-title wrong">❌ 다시 외워야 할 단어 (${wrong.length}개)</h4>
+            <div class="fc-results-list">
+              ${wrong.map(r => `
+                <div class="fc-result-row wrong">
+                  <div class="fc-result-base">${escapeHtml(r.base)}${r.meaning ? ` <span class="fc-meaning">(${escapeHtml(r.meaning)})</span>` : ''}</div>
+                  <div class="fc-result-detail">
+                    <div class="fc-result-line ${r.pastCorrect ? 'ok' : 'bad'}">
+                      <span class="fc-result-label">과거:</span>
+                      ${r.pastCorrect
+                        ? `<span class="fc-correct">${escapeHtml(r.past)} ✓</span>`
+                        : `<span class="fc-user">${escapeHtml(r.userPast || '(빈칸)')}</span> → <span class="fc-correct">${escapeHtml(r.past)}</span>`
+                      }
+                    </div>
+                    <div class="fc-result-line ${r.ppCorrect ? 'ok' : 'bad'}">
+                      <span class="fc-result-label">p.p.:</span>
+                      ${r.ppCorrect
+                        ? `<span class="fc-correct">${escapeHtml(r.pp)} ✓</span>`
+                        : `<span class="fc-user">${escapeHtml(r.userPp || '(빈칸)')}</span> → <span class="fc-correct">${escapeHtml(r.pp)}</span>`
+                      }
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        ${correct.length > 0 ? `
+          <div class="fc-results-section">
+            <h4 class="fc-results-title correct">✅ 잘 외운 단어 (${correct.length}개)</h4>
+            <div class="fc-results-list compact">
+              ${correct.map(r => `
+                <div class="fc-result-row correct compact">
+                  <span class="fc-result-base">${escapeHtml(r.base)}</span>
+                  <span class="fc-result-arrow">→</span>
+                  <span class="fc-correct">${escapeHtml(r.past)}, ${escapeHtml(r.pp)}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <div class="fc-actions-row">
+          <button class="ctrl-btn fc-restart-all">↻ 처음부터 다시</button>
+          ${wrong.length > 0
+            ? `<button class="ctrl-btn primary fc-restart-wrong">📌 틀린 단어만 다시 (${wrong.length}개)</button>`
+            : ''}
+        </div>
+      </div>
+    `;
+
+    container.querySelector('.fc-restart-all')?.addEventListener('click', () => {
+      state.cards = shuffle(data.cards);
+      state.idx = 0;
+      state.pastInput = '';
+      state.ppInput = '';
+      state.revealed = false;
+      state.results = [];
+      state.finished = false;
+      state.onlyWrong = false;
+      render();
+    });
+
+    container.querySelector('.fc-restart-wrong')?.addEventListener('click', () => {
+      // Re-drill only the cards he got wrong
+      const wrongCards = state.results
+        .filter(r => !r.pastCorrect || !r.ppCorrect)
+        .map(r => ({ base: r.base, past: r.past, pp: r.pp, meaning: r.meaning }));
+      state.cards = shuffle(wrongCards);
+      state.idx = 0;
+      state.pastInput = '';
+      state.ppInput = '';
+      state.revealed = false;
+      state.results = [];
+      state.finished = false;
+      state.onlyWrong = true;
+      render();
+    });
+  }
+
+  render();
+}
+
 
 // ============================================================
 // Call Gemini to check a practice answer
