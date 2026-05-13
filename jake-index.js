@@ -747,3 +747,53 @@ const JAKE_AI_PRACTICE = {
     ]
   }
 };
+
+// ============================================================
+// Flashcard drill data — indexed by drill ID
+// Each card has: base (current), past, pp (past participle), meaning
+// Multiple correct answers can be separated by " / "
+// ============================================================
+const JAKE_FLASHCARDS = {
+  "ch2-irregular": {
+    title: "불규칙 동사 암기 카드",
+    instruction: "현재형(base)을 보고 과거형(past)과 과거분사형(p.p.)을 입력하세요. 끝나면 결과를 보여드립니다.",
+    cards: [
+      { base: "be (am/is)", past: "was", pp: "been", meaning: "~이다" },
+      { base: "be (are)", past: "were", pp: "been", meaning: "~이다" },
+      { base: "have / has", past: "had", pp: "had", meaning: "가지다" },
+      { base: "do / does", past: "did", pp: "done", meaning: "하다" },
+      { base: "go", past: "went", pp: "gone", meaning: "가다" },
+      { base: "come", past: "came", pp: "come", meaning: "오다" },
+      { base: "see", past: "saw", pp: "seen", meaning: "보다" },
+      { base: "eat", past: "ate", pp: "eaten", meaning: "먹다" },
+      { base: "drink", past: "drank", pp: "drunk", meaning: "마시다" },
+      { base: "buy", past: "bought", pp: "bought", meaning: "사다" },
+      { base: "take", past: "took", pp: "taken", meaning: "가져가다" },
+      { base: "give", past: "gave", pp: "given", meaning: "주다" },
+      { base: "get", past: "got", pp: "gotten / got", meaning: "얻다" },
+      { base: "make", past: "made", pp: "made", meaning: "만들다" },
+      { base: "write", past: "wrote", pp: "written", meaning: "쓰다" },
+      { base: "read", past: "read", pp: "read", meaning: "읽다 (발음만 'red'로 바뀜)" },
+      { base: "speak", past: "spoke", pp: "spoken", meaning: "말하다" },
+      { base: "tell", past: "told", pp: "told", meaning: "전하다" },
+      { base: "say", past: "said", pp: "said", meaning: "말하다" },
+      { base: "know", past: "knew", pp: "known", meaning: "알다" },
+      { base: "think", past: "thought", pp: "thought", meaning: "생각하다" },
+      { base: "find", past: "found", pp: "found", meaning: "찾다" },
+      { base: "feel", past: "felt", pp: "felt", meaning: "느끼다" },
+      { base: "sleep", past: "slept", pp: "slept", meaning: "자다" },
+      { base: "leave", past: "left", pp: "left", meaning: "떠나다" },
+      { base: "lose", past: "lost", pp: "lost", meaning: "잃다" },
+      { base: "meet", past: "met", pp: "met", meaning: "만나다" },
+      { base: "run", past: "ran", pp: "run", meaning: "달리다" },
+      { base: "drive", past: "drove", pp: "driven", meaning: "운전하다" },
+      { base: "bring", past: "brought", pp: "brought", meaning: "가져오다" },
+      { base: "begin", past: "began", pp: "begun", meaning: "시작하다" },
+      { base: "break", past: "broke", pp: "broken", meaning: "부수다" },
+      { base: "choose", past: "chose", pp: "chosen", meaning: "선택하다" },
+      { base: "put", past: "put", pp: "put", meaning: "놓다" },
+      { base: "cut", past: "cut", pp: "cut", meaning: "자르다" },
+      { base: "let", past: "let", pp: "let", meaning: "허락하다" }
+    ]
+  }
+};
