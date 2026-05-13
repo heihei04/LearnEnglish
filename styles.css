@@ -995,3 +995,282 @@ html, body {
 .lesson-content > .lesson-block + .section-title-large {
   margin-top: 24px;
 }
+
+/* ============================================================
+   FLASHCARD DRILL (irregular verbs)
+   ============================================================ */
+.flashcard-intro {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--primary-soft), var(--purple-soft));
+  border-radius: var(--radius);
+  border-left: 4px solid var(--primary);
+}
+.flashcard-intro-title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.flashcard-intro p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.flashcard-card {
+  background: var(--bg-elevated);
+  border: 2px solid var(--primary-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md);
+}
+.flashcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+.flashcard-header h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.flashcard-progress {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: var(--primary-soft);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.flashcard-instruction {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.flashcard-face {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.25);
+}
+.flashcard-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+.flashcard-base {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.flashcard-meaning {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.flashcard-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.flashcard-input-row {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+.flashcard-input-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.flashcard-input {
+  padding: 10px 12px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-family: ui-monospace, Menlo, monospace;
+  background: var(--bg-secondary);
+  color: var(--text);
+}
+.flashcard-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg-elevated);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+.flashcard-input:disabled {
+  background: var(--bg-secondary);
+  opacity: 0.85;
+}
+.fc-mark {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.fc-mark.correct { color: var(--success-dark); }
+.fc-mark.wrong { color: var(--danger-dark); }
+.fc-mark small {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.flashcard-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.flashcard-actions .ctrl-btn { min-width: 140px; }
+
+/* ============== Results screen ============== */
+.flashcard-results-header {
+  text-align: center;
+  padding: 22px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+.flashcard-results-header.perfect {
+  background: linear-gradient(135deg, var(--success), var(--success-dark));
+  color: white;
+}
+.flashcard-results-header.great {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+.flashcard-results-header.good {
+  background: linear-gradient(135deg, var(--warn), var(--warn-dark));
+  color: white;
+}
+.flashcard-results-header.try-again {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 2px solid var(--border-strong);
+}
+.fc-score-big {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.fc-score-pct {
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+.fc-score-label {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fc-results-section { margin-bottom: 18px; }
+.fc-results-title {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+.fc-results-title.wrong {
+  background: var(--danger-soft);
+  color: var(--danger-dark);
+}
+.fc-results-title.correct {
+  background: var(--success-soft);
+  color: var(--success-dark);
+}
+.fc-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fc-results-list.compact { gap: 4px; }
+
+.fc-result-row {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  border-left: 3px solid;
+}
+.fc-result-row.wrong { border-left-color: var(--danger); }
+.fc-result-row.correct { border-left-color: var(--success); }
+.fc-result-row.compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 13px;
+}
+.fc-result-arrow { color: var(--text-tertiary); }
+.fc-result-base {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  font-family: ui-monospace, Menlo, monospace;
+}
+.fc-meaning {
+  font-family: inherit;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+.fc-result-detail { display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+.fc-result-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, Menlo, monospace;
+  flex-wrap: wrap;
+}
+.fc-result-label {
+  font-family: inherit;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  min-width: 44px;
+}
+.fc-user {
+  color: var(--danger-dark);
+  text-decoration: line-through;
+}
+.fc-correct {
+  color: var(--success-dark);
+  font-weight: 600;
+}
+
+.fc-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+.fc-actions-row .ctrl-btn { flex: 1; }
+
+/* Mobile: stack flashcard input rows */
+@media (max-width: 480px) {
+  .flashcard-input-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .flashcard-input-row label { font-size: 12px; }
+  .fc-mark { justify-content: flex-end; }
+  .flashcard-base { font-size: 30px; }
+}
