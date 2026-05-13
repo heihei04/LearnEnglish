@@ -691,5 +691,59 @@ const JAKE_AI_PRACTICE = {
       { korean: "그 피트니스 센터에는 수영장이 없었습니다.", hint: "( no / swimming pool / fitness center )", expectedPattern: "There was no swimming pool in the fitness center" },
       { korean: "그녀는 어제 영화를 보지 않았습니다.", hint: "( didn't / watch / movie )", expectedPattern: "She didn't watch a movie yesterday" }
     ]
+  },
+
+  // ====== CHAPTER 2 ACTIVITIES ======
+
+  "ch2-a": {
+    title: "A. 괄호 안의 동사를 알맞은 시제로 바꾸세요",
+    instruction: "문장의 의미와 시간 표현에 맞게 동사의 시제를 바꿔 빈칸에 한 단어 또는 짧은 구로 답하세요.",
+    type: "fill-blank",
+    questions: [
+      { prompt: "내 사촌은 매일 학교까지 자전거를 탑니다.", sentence: "My cousin _____ (ride) his bike to school every day.", answer: "rides", lesson: "현재 시제" },
+      { prompt: "지금 비가 내리고 있습니다.", sentence: "It _____ (rain) right now.", answer: "is raining", lesson: "현재진행형" },
+      { prompt: "우리는 지난 토요일에 박물관에 갔습니다.", sentence: "We _____ (go) to the museum last Saturday.", answer: "went", lesson: "과거 시제" },
+      { prompt: "그녀는 그 회사에서 6년째 일하고 있습니다.", sentence: "She _____ (work) at the company for 6 years.", answer: "has worked", lesson: "현재완료" },
+      { prompt: "나는 오늘 아침부터 너를 기다리고 있어.", sentence: "I _____ (wait) for you since this morning.", answer: "have been waiting", lesson: "현재완료 진행형" }
+    ]
+  },
+
+  "ch2-b": {
+    title: "B. 다음 동사의 과거형 또는 과거분사형을 쓰세요",
+    instruction: "각 동사의 과거형 (past)과 과거분사형 (p.p.)을 모두 쓰세요. 형식: \"과거형, 과거분사형\" (예: went, gone)",
+    type: "fill-blank",
+    questions: [
+      { prompt: "동사: take", sentence: "과거형, 과거분사형:", answer: "took, taken", lesson: "불규칙 동사" },
+      { prompt: "동사: write", sentence: "과거형, 과거분사형:", answer: "wrote, written", lesson: "불규칙 동사" },
+      { prompt: "동사: drive", sentence: "과거형, 과거분사형:", answer: "drove, driven", lesson: "불규칙 동사" },
+      { prompt: "동사: speak", sentence: "과거형, 과거분사형:", answer: "spoke, spoken", lesson: "불규칙 동사" },
+      { prompt: "동사: eat", sentence: "과거형, 과거분사형:", answer: "ate, eaten", lesson: "불규칙 동사" }
+    ]
+  },
+
+  "ch2-c": {
+    title: "C. 문장에서 잘못된 시제를 찾아 바르게 고치세요",
+    instruction: "각 문장은 시제 사용에 오류가 있습니다. 틀린 부분을 찾아 바르게 고친 후, 전체 문장을 다시 쓰세요.",
+    type: "correction",
+    questions: [
+      { sentence: "She go to the dentist last Friday.", correctedSentence: "She went to the dentist last Friday.", explanation: "\"last Friday\"는 과거를 나타내므로 동사를 과거형 went로 바꿔야 합니다." },
+      { sentence: "I am knowing him for many years.", correctedSentence: "I have known him for many years.", explanation: "know는 상태 동사라서 진행형을 쓰지 않습니다. 과거부터 지금까지의 의미는 현재완료 have known으로 표현합니다." },
+      { sentence: "They have visited Paris in 2019.", correctedSentence: "They visited Paris in 2019.", explanation: "\"in 2019\" 같은 구체적인 과거 시점은 현재완료와 함께 쓸 수 없습니다. 과거 시제 visited로 바꿔야 합니다." },
+      { sentence: "He is study for the exam right now.", correctedSentence: "He is studying for the exam right now.", explanation: "현재진행형은 \"be동사 + 동사ing\" 형태입니다. study가 아니라 studying이 맞습니다." },
+      { sentence: "The bus leaved the station 5 minutes ago.", correctedSentence: "The bus left the station 5 minutes ago.", explanation: "leave는 불규칙 동사입니다. 과거형은 leaved가 아니라 left입니다." }
+    ]
+  },
+
+  "ch2-d": {
+    title: "D. 한국어 문장을 영어로 옮기세요",
+    instruction: "주어진 단어를 활용하여 완전한 영어 문장을 쓰세요. 시제에 특히 주의하세요.",
+    type: "translation",
+    questions: [
+      { korean: "나는 어제 친구들과 저녁을 먹었습니다.", hint: "( have dinner / friends / yesterday )", expectedPattern: "I had dinner with my friends yesterday" },
+      { korean: "그는 지금 거실에서 TV를 보고 있습니다.", hint: "( watch TV / living room / now )", expectedPattern: "He is watching TV in the living room now" },
+      { korean: "저는 한 번도 일본에 가본 적이 없습니다.", hint: "( never / been to / Japan )", expectedPattern: "I have never been to Japan" },
+      { korean: "우리는 2020년부터 이 동네에 살고 있습니다.", hint: "( live / neighborhood / since )", expectedPattern: "We have lived in this neighborhood since 2020" },
+      { korean: "그녀는 두 시간 동안 책을 읽고 있습니다.", hint: "( read / book / for two hours )", expectedPattern: "She has been reading a book for two hours" }
+    ]
   }
 };
