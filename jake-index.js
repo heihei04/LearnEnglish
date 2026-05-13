@@ -801,6 +801,84 @@ const JAKE_AI_PRACTICE = {
       { prompt: "저는 그 시험에 꼭 합격해야 합니다.", sentence: "I _____ pass the test.", answer: "have to", lesson: "have to" },
       { prompt: "저는 계획을 변경해야만 했습니다.", sentence: "I _____ change the plan.", answer: "had to", lesson: "have to" }
     ]
+  },
+
+  // ====== CHAPTER 4 ACTIVITIES ======
+
+  "ch4-a": {
+    title: "A. 다음 명사가 셀 수 있는지 셀 수 없는지 답하세요",
+    instruction: "각 명사가 '셀 수 있음' (countable)인지 '셀 수 없음' (uncountable)인지 한국어로 답하세요. 답은 \"셀 수 있음\" 또는 \"셀 수 없음\" 중 하나로만 쓰세요.",
+    type: "fill-blank",
+    questions: [
+      { prompt: "명사: information", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
+      { prompt: "명사: sandwich", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 있음", lesson: "명사" },
+      { prompt: "명사: furniture", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
+      { prompt: "명사: airplane", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 있음", lesson: "명사" },
+      { prompt: "명사: advice", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
+      { prompt: "명사: question", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 있음", lesson: "명사" },
+      { prompt: "명사: knowledge", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" },
+      { prompt: "명사: baggage", sentence: "셀 수 있음 또는 셀 수 없음?", answer: "셀 수 없음", lesson: "명사" }
+    ]
+  },
+
+  "ch4-b": {
+    title: "B. 빈칸에 알맞은 관사를 넣으세요 (a / an / the / 없음)",
+    instruction: "한국어 문장의 의미에 맞게 빈칸에 a, an, the 중 하나를 넣거나, 관사가 필요 없으면 \"없음\"이라고 쓰세요.",
+    type: "fill-blank",
+    questions: [
+      { prompt: "저는 기타를 칠 수 있습니다.", sentence: "I can play _____ guitar.", answer: "the", lesson: "관사" },
+      { prompt: "그들은 축구를 하고 있습니다.", sentence: "They are playing _____ soccer.", answer: "없음", lesson: "관사" },
+      { prompt: "사라는 버스를 타고 출근합니다.", sentence: "Sarah goes to work by _____ bus.", answer: "없음", lesson: "관사" },
+      { prompt: "저는 운전면허가 없습니다.", sentence: "I don't have _____ driver's license.", answer: "a", lesson: "관사" },
+      { prompt: "우리는 보통 7시에 저녁을 먹습니다.", sentence: "We usually have _____ dinner at 7 P.M.", answer: "없음", lesson: "관사" },
+      { prompt: "저는 새로운 사무실이 필요합니다.", sentence: "I need _____ new office.", answer: "a", lesson: "관사" },
+      { prompt: "한 시간만 기다려 주세요.", sentence: "Please wait for _____ hour.", answer: "an", lesson: "관사" },
+      { prompt: "거실에 있는 TV가 고장 났습니다.", sentence: "_____ TV in the living room is broken.", answer: "The", lesson: "관사" }
+    ]
+  },
+
+  "ch4-c": {
+    title: "C. 밑줄 친 부분을 알맞은 대명사로 바꾸세요",
+    instruction: "각 문장에서 밑줄 친 명사를 알맞은 대명사 (he, him, his, she, her, hers, it, they, them, their 등)로 바꾸어 한 단어로 답하세요.",
+    type: "fill-blank",
+    questions: [
+      { prompt: "Mark's brother is a firefighter. → 밑줄 친 \"Mark's brother\"를 대명사로:", sentence: "_____ is a firefighter.", answer: "He", lesson: "대명사" },
+      { prompt: "I can't find Lily and Aaron. → 밑줄 친 \"Lily and Aaron\"을 대명사로:", sentence: "I can't find _____.", answer: "them", lesson: "대명사" },
+      { prompt: "I met your aunt on the bus. → 밑줄 친 \"your aunt\"를 대명사로:", sentence: "I met _____ on the bus.", answer: "her", lesson: "대명사" },
+      { prompt: "The car is parked outside. → 밑줄 친 \"The car\"를 대명사로:", sentence: "_____ is parked outside.", answer: "It", lesson: "대명사" },
+      { prompt: "Tomorrow is my grandfather's birthday. → 밑줄 친 \"my grandfather's\"를 소유격 대명사로:", sentence: "Tomorrow is _____ birthday.", answer: "his", lesson: "대명사" },
+      { prompt: "Look at the flowers. The flowers' colors are bright. → 밑줄 친 \"The flowers'\"를 소유격으로:", sentence: "_____ colors are bright.", answer: "Their", lesson: "대명사" }
+    ]
+  },
+
+  "ch4-d": {
+    title: "D. 한국어 문장에 맞게 알맞은 지시대명사를 골라 문장을 완성하세요",
+    instruction: "단어 상자에서 알맞은 것을 골라 빈칸을 채우세요.\n단어 상자: [ this / that / these / those ]",
+    type: "fill-blank",
+    questions: [
+      { prompt: "이것은 제가 가장 좋아하는 노래입니다.", sentence: "_____ is my favorite song.", answer: "This", lesson: "지시대명사" },
+      { prompt: "저것은 새로 생긴 식당입니다.", sentence: "_____ is a new restaurant.", answer: "That", lesson: "지시대명사" },
+      { prompt: "저것들은 우리 할머니의 그림입니다.", sentence: "_____ are my grandmother's paintings.", answer: "Those", lesson: "지시대명사" },
+      { prompt: "이 사진들은 정말 아름답습니다.", sentence: "_____ photos are very beautiful.", answer: "These", lesson: "지시대명사" },
+      { prompt: "저 빌딩은 매우 오래되었습니다.", sentence: "_____ building is very old.", answer: "That", lesson: "지시대명사" },
+      { prompt: "이 냉장고는 고장 났습니다.", sentence: "_____ refrigerator is broken.", answer: "This", lesson: "지시대명사" }
+    ]
+  },
+
+  "ch4-e": {
+    title: "E. 한국어 문장에 맞게 알맞은 부정대명사를 골라 문장을 완성하세요",
+    instruction: "단어 상자에서 가장 알맞은 것을 골라 빈칸을 채우세요.\n단어 상자: [ some / any / all / each / every / most / both / another / one / each other ]",
+    type: "fill-blank",
+    questions: [
+      { prompt: "혹시 좋은 추천이 있나요?", sentence: "Do you have _____ good recommendations?", answer: "any", lesson: "부정대명사" },
+      { prompt: "저는 면접에서 모든 질문에 답변했습니다.", sentence: "I answered _____ question in the interview.", answer: "every", lesson: "부정대명사" },
+      { prompt: "모든 방에는 에어컨이 있습니다.", sentence: "_____ rooms have air conditioners.", answer: "All", lesson: "부정대명사" },
+      { prompt: "각 좌석마다 안전벨트가 있습니다.", sentence: "_____ seat has a seatbelt.", answer: "Each", lesson: "부정대명사" },
+      { prompt: "저는 교실에 있는 대부분의 학생들을 압니다.", sentence: "I know _____ students in the classroom.", answer: "most", lesson: "부정대명사" },
+      { prompt: "이 신발들은 너무 작아요. 더 큰 것이 있나요?", sentence: "These shoes are too small. Do you have a bigger _____?", answer: "one", lesson: "부정대명사" },
+      { prompt: "저희 부모님은 두 분 다 의사이십니다.", sentence: "_____ of my parents are doctors.", answer: "Both", lesson: "부정대명사" },
+      { prompt: "그들은 서로 잘 알고 지냅니다.", sentence: "They know _____ very well.", answer: "each other", lesson: "부정대명사" }
+    ]
   }
 };
 
