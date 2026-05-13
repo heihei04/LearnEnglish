@@ -557,7 +557,8 @@ function renderFlashcardBlock(container, data, blockId) {
     revealed: false,        // current card has been submitted
     results: [],            // {base, past, pp, userPast, userPp, pastCorrect, ppCorrect}
     finished: false,
-    onlyWrong: false        // for "retry wrong only" mode
+    onlyWrong: false,       // for "retry wrong only" mode
+    userInteracted: false   // becomes true after first submit/click — controls auto-focus
   };
 
   // Normalize answer: lowercase, trim. Accept multiple correct answers separated by " / " or " or "
@@ -670,16 +671,40 @@ function renderFlashcardBlock(container, data, blockId) {
     const finishBtn = container.querySelector('.fc-finish');
     if (finishBtn) finishBtn.addEventListener('click', handleFinish);
 
-    // Focus the first empty input
-    setTimeout(() => {
-      if (!state.revealed) {
+    // After submitting, Enter key advances to next card (or finish)
+    // Listen on the card container so the keypress works regardless of focus
+    if (state.revealed) {
+      const handleEnterAdvance = (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (nextBtn) handleNext();
+          else if (finishBtn) handleFinish();
+        }
+      };
+      // Attach to the card; clean up will happen on next render
+      const card = container.querySelector('.flashcard-card');
+      if (card) {
+        card.tabIndex = -1;
+        card.addEventListener('keydown', handleEnterAdvance);
+        // Focus the advance button so Enter has somewhere natural to land
+        setTimeout(() => {
+          if (state.userInteracted) {
+            (nextBtn || finishBtn)?.focus();
+          }
+        }, 50);
+      }
+    } else if (state.userInteracted) {
+      // Only auto-focus the input if the user has already interacted with the deck
+      // — prevents the page from jumping down on first lesson load
+      setTimeout(() => {
         if (!state.pastInput && pastInput) pastInput.focus();
         else if (!state.ppInput && ppInput) ppInput.focus();
-      }
-    }, 50);
+      }, 50);
+    }
   }
 
   function handleSubmit() {
+    state.userInteracted = true;
     const card = state.cards[state.idx];
     const pastCorrect = isCorrect(state.pastInput, card.past);
     const ppCorrect = isCorrect(state.ppInput, card.pp);
