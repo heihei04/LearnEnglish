@@ -294,6 +294,18 @@ function initPracticeBlocks() {
     }
     renderPracticeBlock(block, JAKE_PRACTICE_DATA[id]);
   });
+
+  // Initialize AI-checked practice blocks
+  $$('.ai-practice-block').forEach(block => {
+    if (block.dataset.initialized) return;
+    block.dataset.initialized = '1';
+    const id = block.dataset.practiceId;
+    if (!id || typeof JAKE_AI_PRACTICE === 'undefined' || !JAKE_AI_PRACTICE[id]) {
+      console.error('No AI practice data for id', id);
+      return;
+    }
+    renderAIPracticeBlock(block, JAKE_AI_PRACTICE[id], id);
+  });
 }
 
 function renderPracticeBlock(container, data) {
@@ -358,6 +370,262 @@ function renderPracticeBlock(container, data) {
   }
 
   render();
+}
+
+// ============================================================
+// AI-checked practice blocks (free-write activities)
+// Sends user answer to Gemini for grading + Korean explanation
+// ============================================================
+function renderAIPracticeBlock(container, data, blockId) {
+  // Track answers and feedback per question
+  const state = {
+    answers: new Array(data.questions.length).fill(''),
+    feedback: new Array(data.questions.length).fill(null), // null | {ok, message}
+    loading: new Array(data.questions.length).fill(false)
+  };
+
+  function render() {
+    container.innerHTML = `
+      <div class="ai-practice-card">
+        <div class="ai-practice-header">
+          <h4>${escapeHtml(data.title)}</h4>
+          <p class="ai-practice-instruction">${escapeHtml(data.instruction).replace(/\n/g, '<br/>')}</p>
+        </div>
+        ${data.questions.map((q, i) => renderQuestion(q, i)).join('')}
+      </div>
+    `;
+
+    // Wire up textareas
+    container.querySelectorAll('.ai-practice-input').forEach(input => {
+      input.addEventListener('input', (e) => {
+        const i = parseInt(input.dataset.idx);
+        state.answers[i] = e.target.value;
+      });
+    });
+
+    // Wire up check buttons
+    container.querySelectorAll('.ai-practice-check-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.dataset.idx);
+        handleCheck(i);
+      });
+    });
+
+    // Wire up "show answer" buttons
+    container.querySelectorAll('.ai-practice-show-answer').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.dataset.idx);
+        const q = data.questions[i];
+        const correct = q.answer || q.expectedPattern || q.correctedSentence || '';
+        state.feedback[i] = {
+          ok: null,
+          message: `<strong>정답 예시:</strong> ${escapeHtml(correct)}${q.explanation ? '<br/><br/><strong>설명:</strong> ' + escapeHtml(q.explanation) : ''}`
+        };
+        render();
+      });
+    });
+  }
+
+  function renderQuestion(q, i) {
+    const fb = state.feedback[i];
+    const loading = state.loading[i];
+
+    let questionHtml = '';
+    if (data.type === 'fill-blank') {
+      questionHtml = `
+        <p class="ai-q-prompt"><strong>${i+1}.</strong> ${escapeHtml(q.prompt)}</p>
+        <p class="ai-q-sentence">${escapeHtml(q.sentence)}</p>
+      `;
+    } else if (data.type === 'complete-sentence') {
+      questionHtml = `
+        <p class="ai-q-prompt"><strong>${i+1}.</strong> ${escapeHtml(q.prompt)} <span class="ai-q-hint">${escapeHtml(q.hint || '')}</span></p>
+        <p class="ai-q-sentence">${escapeHtml(q.template || '')}</p>
+      `;
+    } else if (data.type === 'correction') {
+      questionHtml = `
+        <p class="ai-q-prompt"><strong>${i+1}.</strong> 다음 문장의 잘못된 부분을 고치세요:</p>
+        <p class="ai-q-sentence ai-q-wrong">❌ ${escapeHtml(q.sentence)}</p>
+      `;
+    } else if (data.type === 'translation') {
+      questionHtml = `
+        <p class="ai-q-prompt"><strong>${i+1}.</strong> ${escapeHtml(q.korean)} <span class="ai-q-hint">${escapeHtml(q.hint || '')}</span></p>
+      `;
+    }
+
+    const placeholder = data.type === 'fill-blank' ? 'Type one word...' : 'Type your answer in English...';
+
+    return `
+      <div class="ai-q-block ${fb ? (fb.ok === true ? 'correct' : fb.ok === false ? 'incorrect' : 'shown') : ''}">
+        ${questionHtml}
+        <textarea class="ai-practice-input"
+                  data-idx="${i}"
+                  placeholder="${placeholder}"
+                  rows="${data.type === 'fill-blank' ? 1 : 2}"
+                  ${loading ? 'disabled' : ''}>${escapeHtml(state.answers[i])}</textarea>
+        <div class="ai-q-actions">
+          <button class="ai-practice-show-answer" data-idx="${i}" ${loading ? 'disabled' : ''}>💡 답 보기</button>
+          <button class="ai-practice-check-btn" data-idx="${i}" ${loading ? 'disabled' : ''}>
+            ${loading ? '⏳ 채점 중...' : '✓ AI 채점'}
+          </button>
+        </div>
+        ${fb ? `
+          <div class="ai-q-feedback ${fb.ok === true ? 'correct' : fb.ok === false ? 'incorrect' : 'neutral'}">
+            ${fb.message}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  async function handleCheck(i) {
+    const answer = (state.answers[i] || '').trim();
+    if (!answer) {
+      showToast('답을 먼저 작성해주세요');
+      return;
+    }
+
+    // Check API key
+    const apiKey = (typeof getApiKey === 'function') ? getApiKey() : localStorage.getItem('jake-toeic-gemini-key');
+    if (!apiKey) {
+      state.feedback[i] = {
+        ok: null,
+        message: '⚠️ AI 채점을 사용하려면 먼저 <strong>Write 탭</strong>에서 Gemini API 키를 설정해주세요.'
+      };
+      render();
+      return;
+    }
+
+    state.loading[i] = true;
+    state.feedback[i] = null;
+    render();
+
+    try {
+      const q = data.questions[i];
+      const result = await checkPracticeAnswer(data.type, q, answer, apiKey);
+      state.feedback[i] = result;
+    } catch (err) {
+      console.error('Practice check failed', err);
+      let msg = '⚠️ 채점에 실패했습니다. ';
+      if (err.message?.includes('429') || err.message?.includes('limit: 0')) {
+        msg += '오늘의 무료 사용량이 초과되었거나, 잠시 후 다시 시도해주세요.';
+      } else {
+        msg += '인터넷 연결을 확인하거나 잠시 후 다시 시도해주세요.';
+      }
+      state.feedback[i] = { ok: null, message: msg };
+    } finally {
+      state.loading[i] = false;
+      render();
+    }
+  }
+
+  render();
+}
+
+// ============================================================
+// Call Gemini to check a practice answer
+// ============================================================
+async function checkPracticeAnswer(type, q, userAnswer, apiKey) {
+  // Build a type-specific prompt for the AI
+  let userPrompt = '';
+
+  if (type === 'fill-blank') {
+    userPrompt = `Question: "${q.prompt}" (Korean meaning)
+Sentence with blank: "${q.sentence}"
+Expected answer: "${q.answer}"
+Student's answer: "${userAnswer}"
+
+The student needs to fill the blank with a single English word. Check if their answer is correct.`;
+  } else if (type === 'complete-sentence') {
+    userPrompt = `Korean meaning: "${q.prompt}"
+Hint words: ${q.hint || '(none)'}
+Template: "${q.template || ''}"
+Expected pattern: "${q.expectedPattern}"
+Student's full English sentence: "${userAnswer}"
+
+Check if the student's sentence correctly expresses the Korean meaning and is grammatically correct. Minor variations in wording are OK as long as the grammar and meaning match.`;
+  } else if (type === 'correction') {
+    userPrompt = `Original (incorrect) sentence: "${q.sentence}"
+Correct version: "${q.correctedSentence}"
+Why it was wrong: ${q.explanation}
+Student's corrected sentence: "${userAnswer}"
+
+Check if the student successfully corrected the grammar error. Other valid corrections of the same error are acceptable.`;
+  } else if (type === 'translation') {
+    userPrompt = `Korean sentence: "${q.korean}"
+Hint words: ${q.hint || '(none)'}
+Expected pattern: "${q.expectedPattern}"
+Student's English translation: "${userAnswer}"
+
+Check if the student's translation correctly expresses the Korean meaning with proper grammar. Minor word variations are fine.`;
+  }
+
+  const systemInstruction = `You are a friendly English grammar tutor for a Korean speaker who is a beginner learning English. You check practice answers and explain in Korean.
+
+Respond ONLY with valid JSON (no markdown, no code fences) in this exact structure:
+{
+  "ok": true or false,
+  "feedback": "Brief feedback in Korean (한국어). If correct: praise. If incorrect: explain what's wrong and show the correct answer.",
+  "correction": "The correct version of what the student wrote (or empty string if they were correct)"
+}
+
+Rules:
+- Be encouraging. The student is a beginner.
+- Write feedback in Korean (한국어).
+- If the answer is correct OR an acceptable variation, set ok: true.
+- If incorrect, set ok: false. Briefly explain why in Korean, then show the correct version.
+- Keep feedback under 80 Korean characters when possible.
+- For fill-blank: only the exact correct word (or close variant) counts as correct.
+- For other types: focus on grammar correctness, not exact wording match.`;
+
+  const body = {
+    systemInstruction: { parts: [{ text: systemInstruction }] },
+    contents: [{ parts: [{ text: userPrompt }] }],
+    generationConfig: {
+      temperature: 0.2,
+      responseMimeType: "application/json"
+    }
+  };
+
+  // Use the same model fallback as write.js
+  const models = ['gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-2.0-flash-lite', 'gemini-2.0-flash'];
+  const lastWorking = localStorage.getItem('jake-toeic-working-model');
+  const tryOrder = lastWorking ? [lastWorking, ...models.filter(m => m !== lastWorking)] : models;
+
+  let lastError = null;
+  for (const model of tryOrder) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (response.ok) {
+        const respData = await response.json();
+        const text = respData?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!text) throw new Error('Empty response');
+        const parsed = JSON.parse(text);
+        localStorage.setItem('jake-toeic-working-model', model);
+
+        let message = escapeHtml(parsed.feedback || '');
+        if (parsed.correction && parsed.ok === false) {
+          message += `<br/><strong>정답:</strong> ${escapeHtml(parsed.correction)}`;
+        }
+
+        return { ok: parsed.ok === true, message };
+      }
+
+      const errText = await response.text();
+      lastError = new Error(`API ${response.status} (${model}): ${errText}`);
+      if (response.status !== 429 && response.status !== 404) throw lastError;
+    } catch (err) {
+      lastError = err;
+      if (err.message?.includes('API ') && !err.message.includes('429') && !err.message.includes('404')) throw err;
+    }
+  }
+
+  throw lastError || new Error('All models failed');
 }
 
 // Public function so the Write tab can jump to a specific lesson
