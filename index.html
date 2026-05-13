@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#5A9DE8" />
 <meta name="color-scheme" content="light" />
 <meta name="description" content="TOEIC Speaking learning app for Korean beginners" />
-<title>Jake's TOEIC Speaking Trainer</title>
+<title>Haemin's TOEIC Speaking Trainer</title>
 <link rel="manifest" href="manifest.json" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📚%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="styles.css" />
@@ -19,7 +19,7 @@
       <span class="brand-icon">📚</span>
       <div>
         <h1>TOEIC Speaking Trainer</h1>
-        <p class="brand-sub">제이크의 영어 학습 앱</p>
+        <p class="brand-sub">해민이의 영어 학습 앱</p>
       </div>
     </div>
     <div class="header-stats">
@@ -135,6 +135,18 @@
 
   <!-- ============== GRAMMAR TAB ============== -->
   <section class="tab-panel" id="tab-grammar" role="tabpanel">
+    <div class="track-switcher">
+      <button class="track-btn active" data-track="haemin">
+        <span class="track-icon">👩‍🏫</span>
+        <span class="track-name">Haemin</span>
+        <span class="track-sub">14개 레슨</span>
+      </button>
+      <button class="track-btn" data-track="jake">
+        <span class="track-icon">👨‍🏫</span>
+        <span class="track-name">Jake</span>
+        <span class="track-sub">10개 챕터</span>
+      </button>
+    </div>
     <div id="grammar-list-view">
       <div id="lesson-groups"></div>
     </div>
@@ -350,6 +362,7 @@
 <div id="toast" class="toast"></div>
 
 <script src="data.js"></script>
+<script src="jake-lessons.js"></script>
 <script src="srs.js"></script>
 <script src="app.js"></script>
 <script src="write.js"></script>
