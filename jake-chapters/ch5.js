@@ -4,8 +4,8 @@
 
 const JAKE_CH5 = `<div class="lesson-block info">
   <div class="lesson-block-header">📌 개념 정리 (Key Concept)</div>
-  <p>▸ <strong>형용사 (adjective)</strong>는 명사를 꾸며주거나 주어의 상태를 설명하는 단어입니다.</p>
-  <p>▸ <strong>부사 (adverb)</strong>는 동사, 형용사, 또는 다른 부사를 꾸며줍니다. "어떻게, 언제, 얼마나"를 표현합니다.</p>
+  <p>▸ <strong>형용사 (adjective)</strong>는 명사를 꾸미거나 주어의 상태를 설명하는 단어입니다.</p>
+  <p>▸ <strong>부사 (adverb)</strong>는 동사, 형용사, 또는 다른 부사를 꾸며줍니다.</p>
   <p>▸ 두 품사는 형태가 비슷해서 자주 헷갈리지만, <strong>꾸미는 대상이 다릅니다</strong>.</p>
   <hr/>
   <p class="en-line">She is a <strong>kind</strong> person. <span class="ko-line-inline">그녀는 친절한 사람입니다. (형용사 → 명사 person을 꾸밈)</span></p>
@@ -16,15 +16,30 @@ const JAKE_CH5 = `<div class="lesson-block info">
 <!-- SECTION 1: 형용사 -->
 <!-- ============================================================ -->
 <h2 class="section-title-large">❶ 형용사 (Adjectives)</h2>
-<p class="section-intro">형용사는 명사의 <strong>모양, 크기, 색, 성격, 상태</strong> 등을 설명합니다. 한국어와 달리 영어 형용사는 <strong>수에 따라 모양이 바뀌지 않습니다</strong>.</p>
+<p class="section-intro">형용사는 명사의 <strong>모양, 크기, 색, 성격, 상태</strong> 등을 설명합니다. 한국어와 달리 영어 형용사는 <strong>수에 따라 모양이 바뀌지 않습니다</strong> (one tall man, three tall men).</p>
+
+<p class="sub-label">역할 — 무엇을 하는가</p>
 
 <div class="example-box">
   <table class="grammar-table">
-    <thead><tr><th>쓰임</th><th>예시</th></tr></thead>
+    <thead><tr><th>역할</th><th>예시</th></tr></thead>
     <tbody>
-      <tr><td>명사 앞에서 꾸밈</td><td>I bought a <strong>comfortable</strong> chair.<br/><small>저는 편안한 의자를 샀습니다.</small></td></tr>
-      <tr><td>be동사 뒤에서 주어를 설명</td><td>The soup is <strong>hot</strong>.<br/><small>수프가 뜨겁습니다.</small></td></tr>
-      <tr><td>감각동사 (look, sound, taste, smell, feel) 뒤</td><td>You look <strong>tired</strong> today.<br/><small>당신 오늘 피곤해 보여요.</small></td></tr>
+      <tr><td>사람·사물의 성질·상태 표현</td><td>a <strong>kind</strong> teacher / a <strong>broken</strong> chair</td></tr>
+      <tr><td>주어를 보충 설명</td><td>The soup is <strong>hot</strong>.</td></tr>
+      <tr><td>감정·인상 표현</td><td>I feel <strong>tired</strong>. / She looks <strong>happy</strong>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="sub-label">위치 — 어디에 오는가</p>
+
+<div class="example-box">
+  <table class="grammar-table">
+    <thead><tr><th>위치</th><th>예시</th></tr></thead>
+    <tbody>
+      <tr><td>명사 앞</td><td>I bought a <strong>comfortable</strong> chair.<br/><small>저는 편안한 의자를 샀습니다.</small></td></tr>
+      <tr><td>be동사 뒤</td><td>The soup is <strong>hot</strong>.<br/><small>수프가 뜨겁습니다.</small></td></tr>
+      <tr><td>감각동사 뒤 (look, sound, taste, smell, feel, seem)</td><td>You look <strong>tired</strong> today.<br/><small>당신 오늘 피곤해 보여요.</small></td></tr>
     </tbody>
   </table>
 </div>
@@ -37,7 +52,7 @@ const JAKE_CH5 = `<div class="lesson-block info">
 </div>
 
 <div class="lesson-block warn">
-  <div class="lesson-block-header">💡 TIP — 형용사로만 쓰이는 -ly 단어들</div>
+  <div class="lesson-block-header">💡 TIP — -ly로 끝나도 형용사인 단어들</div>
   <p>다음 단어들은 -ly로 끝나지만 <strong>부사가 아니라 형용사</strong>입니다.</p>
   <p>friendly (친절한), lovely (사랑스러운), lonely (외로운), silly (어리석은), elderly (나이 든)</p>
   <p class="en-line">• She is a <strong>friendly</strong> neighbor. <span class="ko-line-inline">친절한 이웃</span></p>
@@ -48,20 +63,22 @@ const JAKE_CH5 = `<div class="lesson-block info">
 <!-- SECTION 2: 부사 -->
 <!-- ============================================================ -->
 <h2 class="section-title-large">❷ 부사 (Adverbs)</h2>
-<p class="section-intro">부사는 <strong>동사, 형용사, 또는 다른 부사</strong>를 꾸며 "어떻게, 얼마나, 언제" 같은 정보를 더해줍니다.</p>
+<p class="section-intro">부사는 <strong>동사, 형용사, 또는 다른 부사</strong>를 꾸며 "어떻게, 얼마나, 언제, 어디서" 같은 정보를 더해줍니다.</p>
+
+<p class="sub-label">역할 — 무엇을 꾸미는가</p>
 
 <div class="example-box">
   <table class="grammar-table">
     <thead><tr><th>꾸미는 대상</th><th>예시</th></tr></thead>
     <tbody>
-      <tr><td>동사를 꾸밈</td><td>He runs <strong>quickly</strong>.<br/><small>그는 빨리 달립니다.</small></td></tr>
-      <tr><td>형용사를 꾸밈</td><td>The book is <strong>very</strong> interesting.<br/><small>이 책은 매우 재미있습니다.</small></td></tr>
-      <tr><td>다른 부사를 꾸밈</td><td>She drives <strong>too</strong> fast.<br/><small>그녀는 너무 빠르게 운전합니다.</small></td></tr>
+      <tr><td>동사</td><td>He runs <strong>quickly</strong>.<br/><small>그는 빨리 달립니다.</small></td></tr>
+      <tr><td>형용사</td><td>The book is <strong>very</strong> interesting.<br/><small>이 책은 매우 재미있습니다.</small></td></tr>
+      <tr><td>다른 부사</td><td>She drives <strong>too</strong> fast.<br/><small>그녀는 너무 빠르게 운전합니다.</small></td></tr>
     </tbody>
   </table>
 </div>
 
-<p class="sub-label">대부분의 부사는 <strong>형용사 + -ly</strong>로 만듭니다:</p>
+<p class="sub-label">형태 — 형용사를 부사로 바꾸는 방법</p>
 
 <div class="example-box">
   <table class="grammar-table">
@@ -69,19 +86,19 @@ const JAKE_CH5 = `<div class="lesson-block info">
     <tbody>
       <tr><td>대부분: + <strong>-ly</strong></td><td>quick → quick<strong>ly</strong>, slow → slow<strong>ly</strong>, careful → careful<strong>ly</strong></td></tr>
       <tr><td>자음+y → <strong>-ily</strong></td><td>happy → happ<strong>ily</strong>, easy → eas<strong>ily</strong>, busy → bus<strong>ily</strong></td></tr>
-      <tr><td>-le로 끝나면 → <strong>-ly로 대체</strong></td><td>simple → simp<strong>ly</strong>, possible → possib<strong>ly</strong></td></tr>
-      <tr><td>-ic로 끝나면 → <strong>-ally</strong></td><td>basic → basic<strong>ally</strong>, automatic → automatic<strong>ally</strong></td></tr>
+      <tr><td>-le → <strong>-ly로 대체</strong></td><td>simple → simp<strong>ly</strong>, possible → possib<strong>ly</strong></td></tr>
+      <tr><td>-ic → <strong>-ally</strong></td><td>basic → basic<strong>ally</strong>, automatic → automatic<strong>ally</strong></td></tr>
     </tbody>
   </table>
 </div>
 
-<p class="sub-label">불규칙 부사 — 외워야 합니다:</p>
+<p class="sub-label">예외 — 불규칙 부사</p>
 
 <div class="example-box">
   <table class="grammar-table">
     <thead><tr><th>형용사</th><th>부사</th><th>주의점</th></tr></thead>
     <tbody>
-      <tr><td>good (좋은)</td><td><strong>well</strong> (잘)</td><td>완전히 다른 단어! goodly 아님</td></tr>
+      <tr><td>good (좋은)</td><td><strong>well</strong> (잘)</td><td>완전히 다른 단어 (goodly 아님)</td></tr>
       <tr><td>fast (빠른)</td><td><strong>fast</strong> (빠르게)</td><td>형태 동일 (fastly 아님)</td></tr>
       <tr><td>hard (열심인)</td><td><strong>hard</strong> (열심히)</td><td>형태 동일</td></tr>
       <tr><td>late (늦은)</td><td><strong>late</strong> (늦게)</td><td>lately는 "최근에"라는 뜻</td></tr>
@@ -91,13 +108,13 @@ const JAKE_CH5 = `<div class="lesson-block info">
   </table>
 </div>
 
-<p class="sub-label">자주 쓰는 빈도부사 (얼마나 자주):</p>
+<p class="sub-label">빈도부사 — 얼마나 자주</p>
 
 <div class="example-box">
   <p>always (항상) &gt; usually (보통) &gt; often (자주) &gt; sometimes (가끔) &gt; rarely (거의 안 함) &gt; never (절대 안 함)</p>
 </div>
 
-<p class="sub-label">빈도부사의 위치:</p>
+<p class="sub-label">위치 — 빈도부사가 들어가는 자리</p>
 
 <div class="example-box">
   <table class="grammar-table">
@@ -126,9 +143,11 @@ const JAKE_CH5 = `<div class="lesson-block info">
 <h2 class="section-title-large">❸ 비교급 (Comparatives)</h2>
 <p class="section-intro">두 대상을 비교할 때 사용합니다. "~보다 더 ~한"의 의미로, 보통 <strong>than</strong>과 함께 쓰입니다.</p>
 
+<p class="sub-label">기본 형태 — 단어 길이에 따라 다름</p>
+
 <div class="example-box">
   <table class="grammar-table">
-    <thead><tr><th>쓰임</th><th>예시</th></tr></thead>
+    <thead><tr><th>형태</th><th>예시</th></tr></thead>
     <tbody>
       <tr><td>짧은 형용사/부사 + <strong>-er than</strong></td><td>My brother is <strong>taller than</strong> me.<br/><small>제 형은 저보다 키가 큽니다.</small></td></tr>
       <tr><td>긴 형용사/부사 → <strong>more ~ than</strong></td><td>This phone is <strong>more expensive than</strong> mine.<br/><small>이 핸드폰은 제 것보다 더 비쌉니다.</small></td></tr>
@@ -136,7 +155,7 @@ const JAKE_CH5 = `<div class="lesson-block info">
   </table>
 </div>
 
-<p class="sub-label">-er 붙이는 규칙:</p>
+<p class="sub-label">-er 붙이는 규칙</p>
 
 <div class="example-box">
   <table class="grammar-table">
@@ -156,7 +175,7 @@ const JAKE_CH5 = `<div class="lesson-block info">
   <p class="en-line">• She speaks <strong>more clearly than</strong> her brother. <span class="ko-line-inline">그녀는 남동생보다 더 또렷하게 말합니다.</span></p>
 </div>
 
-<p class="sub-label">불규칙 비교급 — 외워야 합니다:</p>
+<p class="sub-label">예외 — 불규칙 비교급</p>
 
 <div class="example-box">
   <table class="grammar-table">
@@ -184,19 +203,33 @@ const JAKE_CH5 = `<div class="lesson-block info">
 <h2 class="section-title-large">❹ 최상급 (Superlatives)</h2>
 <p class="section-intro">셋 이상 중에서 <strong>가장 ~한</strong> 것을 표현할 때 사용합니다. 앞에 항상 <strong>the</strong>를 붙입니다.</p>
 
+<p class="sub-label">기본 형태 — 단어 길이에 따라 다름</p>
+
 <div class="example-box">
   <table class="grammar-table">
-    <thead><tr><th>쓰임</th><th>예시</th></tr></thead>
+    <thead><tr><th>형태</th><th>예시</th></tr></thead>
     <tbody>
       <tr><td>짧은 단어: <strong>the + -est</strong></td><td>This is <strong>the cheapest</strong> phone in the store.<br/><small>이것은 가게에서 가장 싼 핸드폰입니다.</small></td></tr>
       <tr><td>긴 단어: <strong>the most ~</strong></td><td>That was <strong>the most interesting</strong> movie of the year.<br/><small>그것은 올해 가장 흥미로운 영화였습니다.</small></td></tr>
-      <tr><td>good / well → <strong>the best</strong></td><td>She got <strong>the best</strong> score in the class.<br/><small>그녀는 반에서 가장 좋은 점수를 받았습니다.</small></td></tr>
-      <tr><td>bad / badly → <strong>the worst</strong></td><td>That was <strong>the worst</strong> day of my life.<br/><small>그날은 제 인생 최악의 날이었습니다.</small></td></tr>
     </tbody>
   </table>
 </div>
 
-<p class="sub-label">자주 쓰는 최상급 표현:</p>
+<p class="sub-label">예외 — 불규칙 최상급</p>
+
+<div class="example-box">
+  <table class="grammar-table">
+    <thead><tr><th>원형</th><th>최상급</th><th>예시</th></tr></thead>
+    <tbody>
+      <tr><td>good / well</td><td><strong>the best</strong></td><td>She got <strong>the best</strong> score in the class.</td></tr>
+      <tr><td>bad / badly</td><td><strong>the worst</strong></td><td>That was <strong>the worst</strong> day of my life.</td></tr>
+      <tr><td>many / much</td><td><strong>the most</strong></td><td>He has <strong>the most</strong> friends.</td></tr>
+      <tr><td>little</td><td><strong>the least</strong></td><td>This option costs <strong>the least</strong>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="sub-label">자주 쓰는 표현 — 최상급의 짝꿍 단어들</p>
 
 <div class="example-box">
   <p class="en-line">• <strong>the + 최상급 + in + 단수명사</strong> — She is the youngest <strong>in</strong> the family.</p>
