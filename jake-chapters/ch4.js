@@ -399,8 +399,12 @@ const JAKE_CH4 = `<div class="lesson-block info">
   <p class="practice-section-intro">아래 5가지 연습을 해보세요. 답을 쓰고 "AI 채점" 버튼을 누르면 AI가 한국어로 설명해 줍니다.</p>
 </div>
 
-<!-- A: 명사 분류 (countable vs uncountable) -->
-<div class="ai-practice-block" data-practice-id="ch4-a"></div>
+<!-- A: 명사 분류 (countable vs uncountable) — flashcard drill -->
+<div class="flashcard-intro">
+  <h3 class="flashcard-intro-title">🃏 A. 셀 수 있는 vs 셀 수 없는 명사 — 암기 카드</h3>
+  <p>이건 단순 암기가 필요한 부분이에요. 카드를 보고 두 버튼 중 하나를 선택하세요. 끝나면 어떤 단어를 더 연습해야 하는지 알려드립니다.</p>
+</div>
+<div class="flashcard-block" data-flashcard-id="ch4-noun-count"></div>
 
 <!-- B: 관사 선택 (a/an/the/없음) -->
 <div class="ai-practice-block" data-practice-id="ch4-b"></div>
