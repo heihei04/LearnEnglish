@@ -590,3 +590,180 @@ html, body {
 @media (min-width: 768px) {
   .lesson-group-list { grid-template-columns: 1fr 1fr; gap: 10px; }
 }
+
+/* ============================================================
+   TRACK SWITCHER (Haemin / Jake)
+   ============================================================ */
+.track-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: var(--bg-elevated);
+  padding: 6px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.track-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.2s;
+  color: var(--text-secondary);
+}
+.track-btn:hover { background: var(--primary-soft); color: var(--primary-dark); }
+.track-btn.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.25);
+}
+.track-icon { font-size: 24px; line-height: 1; }
+.track-name { font-size: 15px; font-weight: 700; }
+.track-sub { font-size: 11px; opacity: 0.85; font-weight: 500; }
+
+/* ============================================================
+   INTERACTIVE PRACTICE BLOCKS (Jake lessons)
+   ============================================================ */
+.practice-block { margin-top: 24px; }
+.practice-card {
+  background: linear-gradient(135deg, var(--primary-soft), var(--purple-soft));
+  border: 2px solid var(--primary-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--primary-light);
+}
+.practice-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.practice-progress {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  background: rgba(255,255,255,0.8);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.practice-question {
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+.practice-question.answered { padding-bottom: 8px; }
+.practice-prompt {
+  font-size: 15px;
+  color: var(--text);
+  margin: 0 0 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.practice-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.practice-option {
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  transition: all 0.15s;
+  text-align: left;
+  line-height: 1.4;
+}
+.practice-option:hover:not(:disabled) {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+.practice-option:disabled { cursor: default; }
+.practice-option.correct {
+  background: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success-dark) !important;
+  font-weight: 700;
+}
+.practice-option.wrong {
+  background: var(--danger-light) !important;
+  border-color: var(--danger) !important;
+  color: var(--danger-dark) !important;
+  text-decoration: line-through;
+}
+
+.practice-explain {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.practice-explain.correct {
+  background: var(--success-soft);
+  color: var(--success-dark);
+  border-left: 3px solid var(--success);
+}
+.practice-explain.wrong {
+  background: var(--warn-soft);
+  color: var(--warn-dark);
+  border-left: 3px solid var(--warn);
+}
+.practice-explain-text {
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.practice-reset-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius);
+  color: var(--primary-dark);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+.practice-reset-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* On mobile, stack option buttons */
+@media (max-width: 480px) {
+  .practice-options { grid-template-columns: 1fr; }
+}
