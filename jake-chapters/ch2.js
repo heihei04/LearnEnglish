@@ -181,6 +181,13 @@ const JAKE_CH2 = `<div class="lesson-block info">
   <p>한 번에 다 외우려 하지 말고, <strong>3개씩 묶어서 매일</strong> 연습하세요. 큰 소리로 "go - went - gone" 처럼 리듬을 타며 발음하면 더 잘 외워집니다.</p>
 </div>
 
+<!-- FLASHCARD DRILL FOR IRREGULAR VERBS -->
+<div class="flashcard-intro">
+  <h3 class="flashcard-intro-title">🃏 암기 카드 연습</h3>
+  <p>위의 표를 외웠나요? 아래 카드 연습으로 확인해보세요. 끝까지 풀면 어떤 단어를 더 연습해야 하는지 알려드립니다.</p>
+</div>
+<div class="flashcard-block" data-flashcard-id="ch2-irregular"></div>
+
 <!-- ============================================================ -->
 <!-- SECTION 5: 현재완료 기본 -->
 <!-- ============================================================ -->
